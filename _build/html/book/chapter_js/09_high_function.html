@@ -1,0 +1,1151 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>9. Hàm Nâng Cao &#8212; ESPNativeSocket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/chapter_js/09_high_function';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ESPNativeSocket</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Xin Chào 👋
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">GIỚI THIỆU</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/introduction_member.html">🤝 Thành Viên</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/iot_intro.html">🧑🏻‍💻 IoT và Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/websocket_intro.html">🚀 WebSocket</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/esp32_intro.html">🔎 ESP32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/nativewind_intro.html">📱 React Native &amp; Tailwind CSS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">PHÂN TÍCH</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/smartcool.html">📌 Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_project.html">💡 Đặc Điểm &amp; Chức Năng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_esp32_websocket.html">🖥️ Tính Năng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_reactnative_tailwindcss.html">📲 Thiết Kế Giao Diện</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">CÀI ĐẶT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/arduino_esp32.html">🔑 Arduino IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/nodejs_npm.html">🛰️ NodeJs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/native_cli.html">🖌️ React Native CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/tailwindcss.html">📕 Tailwind CSS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">JAVASCRIPT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_intro_js.html"><strong>🎨 JavaScript Là Gì?</strong></a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="02_datatype.html">🖥️ Kiểu Dữ Liệu</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="02-1_primitive.html">Kiểu Dữ Liệu Nguyên Thuỷ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-2_complex.html">Kiểu Dữ Liệu Phức Tạp</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="03_boolean_operator_date.html">💡 Các Toán Tử</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_condition.html">🤔 Câu Điều Kiện</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_loop.html">🔁 Vòng Lặp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_function.html">🧐 Hàm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_array.html">🚎 Array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_object.html">📒 Object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_set_map.html">🤗 Set và Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_regular_expression.html">🕐 Biểu Thức Chính Quy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_console.html">💻 Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_error_handling.html">🧨 Xử Lý Lỗi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_classes.html">⏳ OOP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_json.html">😃 JSON</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_web_storage.html">👩 Bộ Nhớ Web</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_promises.html">🫵 Promises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_dom.html">🎬 DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_event.html">🎨 Sự kiện</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">REACT NATIVE</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_component_react_tailwind/component_react_native.html">😊 Thành Phần</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">ỨNG DỤNG</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/create_app.html">👨‍💻 Cài Đặt và Cấu Hình</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/ui_screen.html">📱 Giao Diện Ứng Dụng</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">SERVER</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/create_node.html">🛠️ Tạo Một Dự Án NodeJs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/express_socket.html">1. Nhập thư viện và thiết lập cổng</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/connect_server.html">⏱️ Triển Khai Máy Chủ với Heroku</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">PHẦN CỨNG</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/intro.html">⌨️ Giới Thiệu Phần Cứng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/arduino.html">💎 Arduino Uno R3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/i2c.html">⏱️ Module I2C LCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/relay.html">🛠️ Module Relay 5V</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/protocol.html">🗣️ Phương Thức Giao Tiếp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/test_hardware_esp32.html">🛠️ Kiểm tra ESP32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/test_hardware_lm35.html">✍️ Kiểm tra LM35</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/conclude.html">✍️ Kết Luận</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">MÔ HÌNH HOÀN THIỆN</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_final/software.html">📱 Phần Mềm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_final/hardware.html">🦾 Phần Cứng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_final/product.html">🎓 Demo Sản Phẩm</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/codingwithkien/espnativesocket" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/codingwithkien/espnativesocket/issues/new?title=Issue%20on%20page%20%2Fbook/chapter_js/09_high_function.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/book/chapter_js/09_high_function.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>9. Hàm Nâng Cao</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scope">Scope</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#window-global-object">Window Global Object</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#global-scope">Global scope</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#local-scope">Local scope</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#object">📔 Object</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-an-empty-object">Creating an empty object</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-an-objecting-with-values">Creating an objecting with values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-values-from-an-object">Getting values from an object</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-object-methods">Creating object methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-new-key-for-an-object">Setting new key for an object</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#object-methods">Object Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-object-keys-using-object-keys">Getting object keys using Object.keys()</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-object-values-using-object-values">Getting object values using Object.values()</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-object-keys-and-values-using-object-entries">Getting object keys and values using Object.entries()</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-properties-using-hasownproperty">Checking properties using hasOwnProperty()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">💻 Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-1">Exercises: Level 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-2">Exercises: Level 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-3">Exercises: Level 3</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="ham-nang-cao">
+<h1>9. Hàm Nâng Cao<a class="headerlink" href="#ham-nang-cao" title="Link to this heading">#</a></h1>
+<section id="scope">
+<h2>Scope<a class="headerlink" href="#scope" title="Link to this heading">#</a></h2>
+<p>Variable is the fundamental part in programming. We declare variable to store different data types. To declare a variable we use the key word <em>var</em>, <em>let</em> and <em>const</em>. A variable can be declared at different scope. In this section, we will see the scope variables, scope of variables when we use var or let.
+Variables scopes can be:</p>
+<ul class="simple">
+<li><p>Global</p></li>
+<li><p>Local</p></li>
+</ul>
+<p>Variable can be declared globally or locally  scope. We will see both global and local scope.
+Anything declared without let, var or const is scoped at global level.</p>
+<p>Let us imagine that we have a scope.js file.</p>
+<section id="window-global-object">
+<h3>Window Global Object<a class="headerlink" href="#window-global-object" title="Link to this heading">#</a></h3>
+<p>Without using console.log() open your browser and check, you will see the value of a and b if you write a or b on the browser. That means a and b are already available in the window.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">//scope.js</span>
+<span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;JavaScript&#39;</span><span class="w"> </span><span class="c1">// declaring a variable without let or const make it available in window object and this found anywhere</span>
+<span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="c1">// this is a global scope variable and found in the window object</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">letsLearnScope</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="c1">// accessible</span>
+</pre></div>
+</div>
+</section>
+<section id="global-scope">
+<h3>Global scope<a class="headerlink" href="#global-scope" title="Link to this heading">#</a></h3>
+<p>A globally declared variable can be accessed every where in the same file. But the term global is relative. It can be global to the file or it can be global relative to some block of codes.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">//scope.js</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;JavaScript&#39;</span><span class="w"> </span><span class="c1">// is a global scope it will be found anywhere in this file</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="c1">// is a global scope it will be found anywhere in this file</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">letsLearnScope</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="c1">// JavaScript 10, accessible</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Python&#39;</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="c1">// Python 100</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nx">letsLearnScope</span><span class="p">()</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="c1">// JavaScript 10, accessible</span>
+</pre></div>
+</div>
+</section>
+<section id="local-scope">
+<h3>Local scope<a class="headerlink" href="#local-scope" title="Link to this heading">#</a></h3>
+<p>A variable declared as local can be accessed only in certain block code.</p>
+<ul class="simple">
+<li><p>Block Scope</p></li>
+<li><p>Function Scope</p></li>
+</ul>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">//scope.js</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;JavaScript&#39;</span><span class="w"> </span><span class="c1">// is a global scope it will be found anywhere in this file</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="c1">// is a global scope it will be found anywhere in this file</span>
+<span class="c1">// Function scope</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">letsLearnScope</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="c1">// JavaScript 10, accessible</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<span class="c1">// block scope</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// we can access from the function and outside the function but </span>
+<span class="w">    </span><span class="c1">// variables declared inside the if will not be accessed outside the if block</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Python&#39;</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">20</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">30</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">40</span>
+<span class="w">    </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="nx">value</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">,</span><span class="w"> </span><span class="nx">c</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="c1">// Python 20 30 true</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="c1">// we can not access c because c&#39;s scope is only the if block</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="c1">// JavaScript 10 true</span>
+<span class="p">}</span>
+<span class="nx">letsLearnScope</span><span class="p">()</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="c1">// JavaScript 10, accessible</span>
+</pre></div>
+</div>
+<p>Now, you have an understanding of scope. A variable declared with <em>var</em> only scoped to function but variable declared with <em>let</em> or <em>const</em> is block scope(function block, if block, loop block, etc). Block in JavaScript is a code in between two curly brackets ({}).</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">//scope.js</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">letsLearnScope</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">gravity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">9.81</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">gravity</span><span class="p">)</span>
+
+<span class="p">}</span>
+<span class="c1">// console.log(gravity), Uncaught ReferenceError: gravity is not defined</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">){</span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">gravity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">9.81</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">gravity</span><span class="p">)</span><span class="w"> </span><span class="c1">// 9.81</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">gravity</span><span class="p">)</span><span class="w">  </span><span class="c1">// 9.81</span>
+
+<span class="k">for</span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">3</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span><span class="w"> </span><span class="c1">// 0, 1, 2</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span><span class="w"> </span><span class="c1">// 3</span>
+</pre></div>
+</div>
+<p>In ES6 and above there is <em>let</em> and <em>const</em>, so you will not suffer from the sneakiness of <em>var</em>. When we use <em>let</em> our variable is block scoped and it will not infect other parts of our code.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">//scope.js</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">letsLearnScope</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// you can use let or const, but gravity is constant I prefer to use const</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">gravity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">9.81</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">gravity</span><span class="p">)</span>
+
+<span class="p">}</span>
+<span class="c1">// console.log(gravity), Uncaught ReferenceError: gravity is not defined</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">){</span>
+<span class="w">  </span><span class="kd">const</span><span class="w">  </span><span class="nx">gravity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">9.81</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">gravity</span><span class="p">)</span><span class="w"> </span><span class="c1">// 9.81</span>
+<span class="p">}</span>
+<span class="c1">// console.log(gravity), Uncaught ReferenceError: gravity is not defined</span>
+
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">3</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span><span class="w"> </span><span class="c1">// 0, 1, 2</span>
+<span class="p">}</span>
+<span class="c1">// console.log(i), Uncaught ReferenceError: i is not defined</span>
+</pre></div>
+</div>
+<p>The scope <em>let</em> and <em>const</em> are the same. The difference is only reassigning. We can not change or reassign the value of the <code class="docutils literal notranslate"><span class="pre">const</span></code> variable. I would strongly suggest you to use <em>let</em> and <em>const</em>, by using <em>let</em> and <em>const</em> you will write clean code and avoid hard to debug mistakes. As a rule of thumb, you can use <em>let</em> for any value which change, <em>const</em> for any constant value, and for an array, object, arrow function and function expression.</p>
+</section>
+</section>
+<section id="object">
+<h2>📔 Object<a class="headerlink" href="#object" title="Link to this heading">#</a></h2>
+<p>Everything can be an object and objects do have properties and properties have values, so an object is a key value pair. The order of the key is not reserved, or there is no order.
+To create an object literal, we use two curly brackets.</p>
+<section id="creating-an-empty-object">
+<h3>Creating an empty object<a class="headerlink" href="#creating-an-empty-object" title="Link to this heading">#</a></h3>
+<p>An empty object</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{}</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-an-objecting-with-values">
+<h3>Creating an objecting with values<a class="headerlink" href="#creating-an-objecting-with-values" title="Link to this heading">#</a></h3>
+<p>Now, the person object has firstName, lastName, age, location, skills and isMarried properties. The value of properties or keys could be a string, number, boolean, an object, null, undefined or a function.</p>
+<p>Let us see some examples of object. Each key has a value in the object.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">rectangle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">length</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">rectangle</span><span class="p">)</span><span class="w"> </span><span class="c1">// {length: 20, width: 20}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">firstName</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Asabeneh&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">lastName</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Yetayeh&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">250</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">country</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Finland&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">city</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Helsinki&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">skills</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s1">&#39;HTML&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;JavaScript&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;React&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Node&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;MongoDB&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Python&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;D3.js&#39;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">isMarried</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="getting-values-from-an-object">
+<h3>Getting values from an object<a class="headerlink" href="#getting-values-from-an-object" title="Link to this heading">#</a></h3>
+<p>We can access values of object using two methods:</p>
+<ul class="simple">
+<li><p>using . followed by key name if the key-name is a one word</p></li>
+<li><p>using square bracket and a quote</p></li>
+</ul>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">firstName</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Asabeneh&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">lastName</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Yetayeh&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">250</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">country</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Finland&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">city</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Helsinki&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">skills</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s1">&#39;HTML&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;JavaScript&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;React&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Node&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;MongoDB&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Python&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;D3.js&#39;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">getFullName</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}${</span><span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="si">}</span><span class="sb">`</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;phone number&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;+3584545454545&#39;</span>
+<span class="p">}</span>
+
+<span class="c1">// accessing values using .</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">firstName</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">lastName</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">age</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">location</span><span class="p">)</span><span class="w"> </span><span class="c1">// undefined</span>
+
+<span class="c1">// value can be accessed using square bracket and key name</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">[</span><span class="s1">&#39;firstName&#39;</span><span class="p">])</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">[</span><span class="s1">&#39;lastName&#39;</span><span class="p">])</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">])</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">])</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">])</span><span class="w"> </span><span class="c1">// undefined</span>
+
+<span class="c1">// for instance to access the phone number we only use the square bracket method</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">[</span><span class="s1">&#39;phone number&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-object-methods">
+<h3>Creating object methods<a class="headerlink" href="#creating-object-methods" title="Link to this heading">#</a></h3>
+<p>Now, the person object has getFullName properties. The getFullName is function inside the person object and we call it an object method. The <em>this</em> key word refers to the object itself. We can use the word <em>this</em> to access the values of different properties of the object. We can not use an arrow function as object method because the word this refers to the window inside an arrow function instead of the object itself. Example of object:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">firstName</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Asabeneh&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">lastName</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Yetayeh&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">250</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">country</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Finland&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">city</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Helsinki&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">skills</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s1">&#39;HTML&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;JavaScript&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;React&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Node&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;MongoDB&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Python&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;D3.js&#39;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">getFullName</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="si">}</span><span class="sb">`</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">getFullName</span><span class="p">())</span>
+<span class="c1">// Asabeneh Yetayeh</span>
+</pre></div>
+</div>
+</section>
+<section id="setting-new-key-for-an-object">
+<h3>Setting new key for an object<a class="headerlink" href="#setting-new-key-for-an-object" title="Link to this heading">#</a></h3>
+<p>An object is a mutable data structure and we can modify the content of an object after it gets created.</p>
+<p>Setting a new keys in an object</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">firstName</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Asabeneh&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">lastName</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Yetayeh&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">250</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">country</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Finland&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">city</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Helsinki&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">skills</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s1">&#39;HTML&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;JavaScript&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;React&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Node&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;MongoDB&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Python&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;D3.js&#39;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">getFullName</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="si">}</span><span class="sb">`</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">nationality</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Ethiopian&#39;</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Finland&#39;</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;teacher&#39;</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">skills</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;Meteor&#39;</span><span class="p">)</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">skills</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;SasS&#39;</span><span class="p">)</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">isMarried</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+
+<span class="nx">person</span><span class="p">.</span><span class="nx">getPersonInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">skillsWithoutLastSkill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">skills</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">skills</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">lastSkill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">skills</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">skills</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1</span><span class="p">)[</span><span class="mf">0</span><span class="p">]</span>
+
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">skills</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">skillsWithoutLastSkill</span><span class="si">}</span><span class="sb">, and </span><span class="si">${</span><span class="nx">lastSkill</span><span class="si">}</span><span class="sb">`</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">fullName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">getFullName</span><span class="p">()</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">statement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">fullName</span><span class="si">}</span><span class="sb"> is a </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">title</span><span class="si">}</span><span class="sb">.\nHe lives in </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">country</span><span class="si">}</span><span class="sb">.\nHe teaches </span><span class="si">${</span><span class="nx">skills</span><span class="si">}</span><span class="sb">.`</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">statement</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">getPersonInfo</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Asabeneh<span class="w"> </span>Yetayeh<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>teacher.
+He<span class="w"> </span>lives<span class="w"> </span><span class="k">in</span><span class="w"> </span>Finland.
+He<span class="w"> </span>teaches<span class="w"> </span>HTML,<span class="w"> </span>CSS,<span class="w"> </span>JavaScript,<span class="w"> </span>React,<span class="w"> </span>Node,<span class="w"> </span>MongoDB,<span class="w"> </span>Python,<span class="w"> </span>D3.js,<span class="w"> </span>Meteor,<span class="w"> </span>and<span class="w"> </span>SasS.
+</pre></div>
+</div>
+</section>
+<section id="object-methods">
+<h3>Object Methods<a class="headerlink" href="#object-methods" title="Link to this heading">#</a></h3>
+<p>There are different methods to manipulate an object. Let us see some of the available methods.</p>
+<p><em>Object.assign</em>: To copy an object without modifying the original object</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">firstName</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Asabeneh&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">250</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">country</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Finland&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">city</span><span class="o">:</span><span class="s1">&#39;Helsinki&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">skills</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;HTML&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;JS&#39;</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;teacher&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">street</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Heitamienkatu 16&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">pobox</span><span class="o">:</span><span class="w"> </span><span class="mf">2002</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">city</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Helsinki&#39;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">getPersonInfo</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="sb">`I am </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}</span><span class="sb"> and I live in </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">city</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">country</span><span class="si">}</span><span class="sb">. I am </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="si">}</span><span class="sb">.`</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">//Object methods: Object.assign, Object.keys, Object.values, Object.entries</span>
+<span class="c1">//hasOwnProperty</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">copyPerson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span><span class="w"> </span><span class="nx">person</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">copyPerson</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="getting-object-keys-using-object-keys">
+<h4>Getting object keys using Object.keys()<a class="headerlink" href="#getting-object-keys-using-object-keys" title="Link to this heading">#</a></h4>
+<p><em>Object.keys</em>: To get the keys or properties of an object as an array</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">keys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">copyPerson</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">keys</span><span class="p">)</span><span class="w"> </span><span class="c1">//[&#39;firstName&#39;, &#39;age&#39;, &#39;country&#39;,&#39;city&#39;, &#39;skills&#39;,&#39;title&#39;, &#39;address&#39;, &#39;getPersonInfo&#39;]</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">copyPerson</span><span class="p">.</span><span class="nx">address</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">address</span><span class="p">)</span><span class="w"> </span><span class="c1">//[&#39;street&#39;, &#39;pobox&#39;, &#39;city&#39;]</span>
+</pre></div>
+</div>
+</section>
+<section id="getting-object-values-using-object-values">
+<h4>Getting object values using Object.values()<a class="headerlink" href="#getting-object-values-using-object-values" title="Link to this heading">#</a></h4>
+<p><em>Object.values</em>:To get values of an object as an array</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="nx">copyPerson</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">values</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="getting-object-keys-and-values-using-object-entries">
+<h4>Getting object keys and values using Object.entries()<a class="headerlink" href="#getting-object-keys-and-values-using-object-entries" title="Link to this heading">#</a></h4>
+<p><em>Object.entries</em>:To get the keys and values in an array</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">entries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">copyPerson</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">entries</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="checking-properties-using-hasownproperty">
+<h4>Checking properties using hasOwnProperty()<a class="headerlink" href="#checking-properties-using-hasownproperty" title="Link to this heading">#</a></h4>
+<p><em>hasOwnProperty</em>: To check if a specific key or property exist in an object</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">copyPerson</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">))</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">copyPerson</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;score&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>🌕 You are astonishing. Now, you are super charged with the power of objects. You have just completed day 8 challenges and you are 8 steps a head in to your way to greatness. Now do some exercises for your brain and for your muscle.</p>
+</section>
+</section>
+</section>
+<section id="exercises">
+<h2>💻 Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercises-level-1">
+<h3>Exercises: Level 1<a class="headerlink" href="#exercises-level-1" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Create an empty object called dog</p></li>
+<li><p>Print the the dog object on the console</p></li>
+<li><p>Add name, legs, color, age and bark properties for the dog object. The bark property is a method which return <em>woof woof</em></p></li>
+<li><p>Get name, legs, color, age and bark value from the dog object</p></li>
+<li><p>Set new properties the dog object: breed, getDogInfo</p></li>
+</ol>
+</section>
+<section id="exercises-level-2">
+<h3>Exercises: Level 2<a class="headerlink" href="#exercises-level-2" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Find the person who has many skills in the users object.</p></li>
+<li><p>Count logged in users, count users having greater than equal to 50 points from the following object.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">Alex</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;alex@alex.com&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">skills</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;HTML&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;JavaScript&#39;</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">isLoggedIn</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">points</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">Asab</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;asab@asab.com&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">skills</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;HTML&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;JavaScript&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Redux&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;MongoDB&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Express&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;React&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Node&#39;</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">25</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">isLoggedIn</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">points</span><span class="o">:</span><span class="w"> </span><span class="mf">50</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">Brook</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;daniel@daniel.com&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">skills</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;HTML&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;JavaScript&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;React&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Redux&#39;</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">isLoggedIn</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">points</span><span class="o">:</span><span class="w"> </span><span class="mf">50</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">Daniel</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;daniel@alex.com&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">skills</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;HTML&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;JavaScript&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Python&#39;</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">isLoggedIn</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">points</span><span class="o">:</span><span class="w"> </span><span class="mf">40</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">John</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;john@john.com&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">skills</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;HTML&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;JavaScript&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;React&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Redux&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Node.js&#39;</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">isLoggedIn</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">points</span><span class="o">:</span><span class="w"> </span><span class="mf">50</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">Thomas</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;thomas@thomas.com&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">skills</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;HTML&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;JavaScript&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;React&#39;</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">isLoggedIn</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">points</span><span class="o">:</span><span class="w"> </span><span class="mf">40</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">Paul</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;paul@paul.com&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">skills</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;HTML&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;JavaScript&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;MongoDB&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Express&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;React&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Node&#39;</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">isLoggedIn</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">points</span><span class="o">:</span><span class="w"> </span><span class="mf">40</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span><span class="sb">```</span>
+</pre></div>
+</div>
+</li>
+<li><p>Find people who are MERN stack developer from the users object</p></li>
+<li><p>Set your name in the users object without modifying the original users object</p></li>
+<li><p>Get all keys or properties of users object</p></li>
+<li><p>Get all the values of users object</p></li>
+<li><p>Use the countries object to print a country name, capital, populations and languages.</p></li>
+</ol>
+</section>
+<section id="exercises-level-3">
+<h3>Exercises: Level 3<a class="headerlink" href="#exercises-level-3" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Create an object literal called <em>personAccount</em>. It has <em>firstName, lastName, incomes, expenses</em> properties and it has <em>totalIncome, totalExpense, accountInfo,addIncome, addExpense</em> and <em>accountBalance</em> methods. Incomes is a set of incomes and its description and expenses is a set of incomes and its description.</p></li>
+<li><p>**** Questions:2, 3 and 4 are based on the following two arrays:users and products ()</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ab12ex&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">username</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Alex&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;alex@alex.com&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;123123&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">createdAt</span><span class="o">:</span><span class="s1">&#39;08/01/2020 9:00 AM&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">isLoggedIn</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;fg12cy&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">username</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Asab&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;asab@asab.com&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;123456&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">createdAt</span><span class="o">:</span><span class="s1">&#39;08/01/2020 9:30 AM&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">isLoggedIn</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;zwf8md&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">username</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Brook&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;brook@brook.com&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;123111&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">createdAt</span><span class="o">:</span><span class="s1">&#39;08/01/2020 9:45 AM&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">isLoggedIn</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;eefamr&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">username</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Martha&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;martha@martha.com&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;123222&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">createdAt</span><span class="o">:</span><span class="s1">&#39;08/01/2020 9:50 AM&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">isLoggedIn</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ghderc&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">username</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Thomas&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;thomas@thomas.com&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;123333&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">createdAt</span><span class="o">:</span><span class="s1">&#39;08/01/2020 10:00 AM&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">isLoggedIn</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">];</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">products</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;eedfcf&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;mobile phone&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Huawei Honor&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="mf">200</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">ratings</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nx">userId</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;fg12cy&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">rate</span><span class="o">:</span><span class="w"> </span><span class="mf">5</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nx">userId</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;zwf8md&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">rate</span><span class="o">:</span><span class="w"> </span><span class="mf">4.5</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nx">likes</span><span class="o">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;aegfal&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Laptop&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;MacPro: System Darwin&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="mf">2500</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">ratings</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">    </span><span class="nx">likes</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;fg12cy&#39;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;hedfcg&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;TV&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Smart TV:Procaster&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="mf">400</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">ratings</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nx">userId</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;fg12cy&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">rate</span><span class="o">:</span><span class="w"> </span><span class="mf">5</span><span class="w"> </span><span class="p">}],</span>
+<span class="w">    </span><span class="nx">likes</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;fg12cy&#39;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Imagine you are getting the above users collection from a MongoDB database.
+a. Create a function called signUp which allows user to add to the collection. If user exists, inform the user that he has already an account.<br />
+b. Create a function called signIn which allows user to sign in to the application</p>
+<ol class="arabic simple" start="3">
+<li><p>The products array has three elements and each of them has six properties.
+a. Create a function called rateProduct which rates the product
+b. Create a function called averageRating which calculate the average rating of a product</p></li>
+<li><p>Create a function called likeProduct. This function will helps to like to the product if it is not liked and remove like if it was liked.</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book/chapter_js"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scope">Scope</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#window-global-object">Window Global Object</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#global-scope">Global scope</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#local-scope">Local scope</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#object">📔 Object</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-an-empty-object">Creating an empty object</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-an-objecting-with-values">Creating an objecting with values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-values-from-an-object">Getting values from an object</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-object-methods">Creating object methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-new-key-for-an-object">Setting new key for an object</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#object-methods">Object Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-object-keys-using-object-keys">Getting object keys using Object.keys()</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-object-values-using-object-values">Getting object values using Object.values()</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-object-keys-and-values-using-object-entries">Getting object keys and values using Object.entries()</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-properties-using-hasownproperty">Checking properties using hasOwnProperty()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">💻 Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-1">Exercises: Level 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-2">Exercises: Level 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-3">Exercises: Level 3</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Duong Trung Kien, Nguyen Duy Khanh, Ho Minh Khanh
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

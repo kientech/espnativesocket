@@ -1,0 +1,922 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>🎬 DOM &#8212; ESPNativeSocket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/chapter_js/19_dom';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="🎨 Sự kiện" href="20_event.html" />
+    <link rel="prev" title="🫵 Promises" href="18_promises.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ESPNativeSocket</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Xin Chào 👋
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">GIỚI THIỆU</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/introduction_member.html">🤝 Thành Viên</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/iot_intro.html">🧑🏻‍💻 IoT và Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/websocket_intro.html">🚀 WebSocket</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/esp32_intro.html">🔎 ESP32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/nativewind_intro.html">📱 React Native &amp; Tailwind CSS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">PHÂN TÍCH</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/smartcool.html">📌 Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_project.html">💡 Đặc Điểm &amp; Chức Năng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_esp32_websocket.html">🖥️ Tính Năng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_reactnative_tailwindcss.html">📲 Thiết Kế Giao Diện</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">CÀI ĐẶT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/arduino_esp32.html">🔑 Arduino IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/nodejs_npm.html">🛰️ NodeJs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/native_cli.html">🖌️ React Native CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/tailwindcss.html">📕 Tailwind CSS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">JAVASCRIPT</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_intro_js.html"><strong>🎨 JavaScript Là Gì?</strong></a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="02_datatype.html">🖥️ Kiểu Dữ Liệu</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="02-1_primitive.html">Kiểu Dữ Liệu Nguyên Thuỷ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-2_complex.html">Kiểu Dữ Liệu Phức Tạp</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="03_boolean_operator_date.html">💡 Các Toán Tử</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_condition.html">🤔 Câu Điều Kiện</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_loop.html">🔁 Vòng Lặp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_function.html">🧐 Hàm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_array.html">🚎 Array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_object.html">📒 Object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_set_map.html">🤗 Set và Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_regular_expression.html">🕐 Biểu Thức Chính Quy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_console.html">💻 Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_error_handling.html">🧨 Xử Lý Lỗi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_classes.html">⏳ OOP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_json.html">😃 JSON</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_web_storage.html">👩 Bộ Nhớ Web</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_promises.html">🫵 Promises</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">🎬 DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_event.html">🎨 Sự kiện</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">REACT NATIVE</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_component_react_tailwind/component_react_native.html">😊 Thành Phần</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">ỨNG DỤNG</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/create_app.html">👨‍💻 Cài Đặt và Cấu Hình</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/ui_screen.html">📱 Giao Diện Ứng Dụng</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">SERVER</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/create_node.html">🛠️ Tạo Một Dự Án NodeJs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/express_socket.html">1. Nhập thư viện và thiết lập cổng</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/connect_server.html">⏱️ Triển Khai Máy Chủ với Heroku</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">PHẦN CỨNG</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/intro.html">⌨️ Giới Thiệu Phần Cứng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/arduino.html">💎 Arduino Uno R3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/i2c.html">⏱️ Module I2C LCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/relay.html">🛠️ Module Relay 5V</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/protocol.html">🗣️ Phương Thức Giao Tiếp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/test_hardware_esp32.html">🛠️ Kiểm tra ESP32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/test_hardware_lm35.html">✍️ Kiểm tra LM35</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/conclude.html">✍️ Kết Luận</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">MÔ HÌNH HOÀN THIỆN</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_final/software.html">📱 Phần Mềm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_final/hardware.html">🦾 Phần Cứng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_final/product.html">🎓 Demo Sản Phẩm</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/codingwithkien/espnativesocket" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/codingwithkien/espnativesocket/issues/new?title=Issue%20on%20page%20%2Fbook/chapter_js/19_dom.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/book/chapter_js/19_dom.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>🎬 DOM</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mo-hinh-doi-tuong-tai-lieu-dom-ngay-1">Mô hình Đối tượng Tài liệu (DOM) - Ngày 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-phan-tu">Lấy Phần Tử</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-phan-tu-bang-ten-the">Lấy phần tử bằng tên thẻ</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-phan-tu-bang-ten-lop">Lấy phần tử bằng tên lớp</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-mot-phan-tu-bang-id">Lấy một phần tử bằng id</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-phan-tu-bang-cach-su-dung-phuong-thuc-queryselector">Lấy phần tử bằng cách sử dụng phương thức querySelector</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#them-thuoc-tinh">Thêm thuộc tính</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#them-thuoc-tinh-bang-cach-su-dung-setattribute">Thêm thuộc tính bằng cách sử dụng setAttribute</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#them-thuoc-tinh-ma-khong-su-dung-setattribute">Thêm thuộc tính mà không sử dụng setAttribute</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#them-class-bang-classlist">Thêm class bằng classList</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xoa-class-bang-remove">Xóa class bằng remove</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#them-van-ban-vao-phan-tu-html">Thêm Văn Bản vào Phần Tử HTML</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#them-noi-dung-van-ban-bang-textcontent">Thêm nội dung văn bản bằng textContent</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#them-noi-dung-van-ban-bang-innerhtml">Thêm Nội Dung Văn Bản bằng innerHTML</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#noi-dung-van-ban">Nội dung Văn Bản</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-html">Inner HTML</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#them-kieu-dang">Thêm kiểu dáng</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#them-mau-sac">Thêm Màu Sắc</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#them-mau-nen">Thêm Màu Nền</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#them-kich-thuoc-font">Thêm Kích Thước Font</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="dom">
+<h1>🎬 DOM<a class="headerlink" href="#dom" title="Link to this heading">#</a></h1>
+<section id="mo-hinh-doi-tuong-tai-lieu-dom-ngay-1">
+<h2>Mô hình Đối tượng Tài liệu (DOM) - Ngày 1<a class="headerlink" href="#mo-hinh-doi-tuong-tai-lieu-dom-ngay-1" title="Link to this heading">#</a></h2>
+<p>Tài liệu HTML được cấu trúc như một Đối tượng JavaScript. Mỗi phần tử HTML có các thuộc tính khác nhau giúp thao tác với nó. Có thể lấy, tạo, thêm hoặc xóa các phần tử HTML bằng JavaScript. Kiểm tra các ví dụ dưới đây. Việc chọn phần tử HTML bằng JavaScript tương tự như việc chọn bằng CSS. Để chọn một phần tử HTML, chúng ta sử dụng tên thẻ, id, tên lớp hoặc các thuộc tính khác.</p>
+<section id="lay-phan-tu">
+<h3>Lấy Phần Tử<a class="headerlink" href="#lay-phan-tu" title="Link to this heading">#</a></h3>
+<p>Chúng ta có thể truy cập hoặc lấy các phần tử đã được tạo sẵn bằng JavaScript. Để truy cập hoặc lấy các phần tử, chúng ta sử dụng các phương thức khác nhau. Mã dưới đây có bốn phần tử <em>h1</em>. Hãy xem các phương pháp khác nhau để truy cập các phần tử <em>h1</em>.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;vi&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Mô hình Đối tượng Tài liệu<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;title&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;first-title&quot;</span><span class="p">&gt;</span>Tiêu đề Thứ Nhất<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;title&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;second-title&quot;</span><span class="p">&gt;</span>Tiêu đề Thứ Hai<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;title&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;third-title&quot;</span><span class="p">&gt;</span>Tiêu đề Thứ Ba<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<section id="lay-phan-tu-bang-ten-the">
+<h4>Lấy phần tử bằng tên thẻ<a class="headerlink" href="#lay-phan-tu-bang-ten-the" title="Link to this heading">#</a></h4>
+<p><strong><em>getElementsByTagName()</em></strong>: nhận một chuỗi tên thẻ làm tham số và phương thức này trả về một đối tượng HTMLCollection. Một HTMLCollection là một đối tượng giống như mảng của các phần tử HTML. Thuộc tính độ dài cung cấp kích thước của bộ sưu tập. Khi nào chúng ta sử dụng phương thức này, chúng ta truy cập các phần tử cá nhân bằng cách sử dụng chỉ mục hoặc sau khi lặp qua từng mục cá nhân. Một HTMLCollection không hỗ trợ tất cả các phương thức của mảng, do đó chúng ta nên sử dụng vòng lặp for thông thường thay vì forEach.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// cú pháp</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;tenthẻ&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">allTitles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;h1&quot;</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">allTitles</span><span class="p">);</span><span class="w"> </span><span class="c1">// HTMLCollections</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">allTitles</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span><span class="w"> </span><span class="c1">// 4</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">allTitles</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">allTitles</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span><span class="w"> </span><span class="c1">// in từng phần tử trong HTMLCollection</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="lay-phan-tu-bang-ten-lop">
+<h4>Lấy phần tử bằng tên lớp<a class="headerlink" href="#lay-phan-tu-bang-ten-lop" title="Link to this heading">#</a></h4>
+<p>Phương thức <strong><em>getElementsByClassName()</em></strong> trả về một đối tượng HTMLCollection. Một HTMLCollection là một danh sách giống mảng của các phần tử HTML. Thuộc tính độ dài cung cấp kích thước của bộ sưu tập. Có thể lặp qua tất cả các phần tử HTMLCollection. Xem ví dụ dưới đây.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// cú pháp</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByClassName</span><span class="p">(</span><span class="s2">&quot;tên lớp&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">allTitles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByClassName</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">allTitles</span><span class="p">);</span><span class="w"> </span><span class="c1">// HTMLCollections</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">allTitles</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span><span class="w"> </span><span class="c1">// 4</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">allTitles</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">allTitles</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span><span class="w"> </span><span class="c1">// in từng phần tử trong HTMLCollection</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="lay-mot-phan-tu-bang-id">
+<h4>Lấy một phần tử bằng id<a class="headerlink" href="#lay-mot-phan-tu-bang-id" title="Link to this heading">#</a></h4>
+<p><strong><em>getElementById()</em></strong> chỉ định một phần tử HTML duy nhất. Chúng ta truyền id mà không có # như một đối số.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// cú pháp</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">firstTitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;first-title&quot;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">firstTitle</span><span class="p">);</span><span class="w"> </span><span class="c1">// &lt;h1&gt;Tiêu đề Thứ Nhất&lt;/h1&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="lay-phan-tu-bang-cach-su-dung-phuong-thuc-queryselector">
+<h4>Lấy phần tử bằng cách sử dụng phương thức querySelector<a class="headerlink" href="#lay-phan-tu-bang-cach-su-dung-phuong-thuc-queryselector" title="Link to this heading">#</a></h4>
+<p>Phương thức <em>document.querySelector</em> có thể chọn một phần tử HTML hoặc các phần tử HTML theo tên thẻ, theo id hoặc theo tên lớp.</p>
+<p><strong><em>querySelector</em></strong>: có thể được sử dụng để chọn phần tử HTML theo tên thẻ, id hoặc lớp. Nếu sử dụng tên thẻ, nó chỉ chọn phần tử đầu tiên.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">firstTitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;h1&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// chọn phần tử h1 đầu tiên có sẵn</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">firstTitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#first-title&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// chọn id với first-title</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">firstTitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;.title&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// chọn phần tử đầu tiên có sẵn với lớp title</span>
+</pre></div>
+</div>
+<p><strong><em>querySelectorAll</em></strong>: có thể được sử dụng để chọn các phần tử html theo tên thẻ hoặc lớp của nó. Nó trả về một nodeList là một đối tượng giống mảng hỗ trợ các phương thức mảng. Chúng ta có thể sử dụng <strong><em>for loop</em></strong> hoặc <strong><em>forEach</em></strong> để lặp qua từng phần tử nodeList.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">allTitles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="nx">chọn</span><span class="w"> </span><span class="nx">tất</span><span class="w"> </span><span class="nx">cả</span><span class="w"> </span><span class="nx">các</span><span class="w"> </span><span class="nx">phần</span><span class="w"> </span><span class="nx">tử</span><span class="w"> </span><span class="nx">h1</span><span class="w"> </span><span class="nx">có</span><span class="w"> </span><span class="nx">sẵn</span><span class="w"> </span><span class="nx">trong</span><span class="w"> </span><span class="nx">trang</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">allTitles</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="w"> </span><span class="c1">// 4</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">allTitles</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">allTitles</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+<span class="p">}</span>
+
+<span class="nx">allTitles</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">title</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">title</span><span class="p">))</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">allTitles</span><span class="sb">```js</span>
+<span class="sb">= document.querySelectorAll(&#39;.title&#39;) // tương tự khi chọn bằng lớp</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="them-thuoc-tinh">
+<h2>Thêm thuộc tính<a class="headerlink" href="#them-thuoc-tinh" title="Link to this heading">#</a></h2>
+<p>Một thuộc tính được thêm vào thẻ mở của HTML để cung cấp thông tin bổ sung về phần tử. Các thuộc tính HTML phổ biến: id, class, src, style, href, disabled, title, alt. Hãy thêm id và class cho tiêu đề thứ tư.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">titles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&quot;h1&quot;</span><span class="p">);</span>
+<span class="nx">titles</span><span class="p">[</span><span class="mf">3</span><span class="p">].</span><span class="nx">className</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;title&quot;</span><span class="p">;</span>
+<span class="nx">titles</span><span class="p">[</span><span class="mf">3</span><span class="p">].</span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;fourth-title&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<section id="them-thuoc-tinh-bang-cach-su-dung-setattribute">
+<h3>Thêm thuộc tính bằng cách sử dụng setAttribute<a class="headerlink" href="#them-thuoc-tinh-bang-cach-su-dung-setattribute" title="Link to this heading">#</a></h3>
+<p>Phương thức <strong><em>setAttribute()</em></strong> đặt bất kỳ thuộc tính html nào. Nó nhận hai tham số là loại thuộc tính và tên của thuộc tính. Hãy thêm các thuộc tính class và id cho tiêu đề thứ tư.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">titles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&quot;h1&quot;</span><span class="p">);</span>
+<span class="nx">titles</span><span class="p">[</span><span class="mf">3</span><span class="p">].</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;title&quot;</span><span class="p">);</span>
+<span class="nx">titles</span><span class="p">[</span><span class="mf">3</span><span class="p">].</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;fourth-title&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="them-thuoc-tinh-ma-khong-su-dung-setattribute">
+<h3>Thêm thuộc tính mà không sử dụng setAttribute<a class="headerlink" href="#them-thuoc-tinh-ma-khong-su-dung-setattribute" title="Link to this heading">#</a></h3>
+<p>Chúng ta có thể sử dụng phương pháp thiết lập thuộc tính đối tượng bình thường để đặt một thuộc tính nhưng điều này không thể hoạt động cho tất cả các phần tử. Một số thuộc tính là thuộc tính đối tượng DOM và chúng có thể được đặt trực tiếp. Ví dụ: id và class</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">//cách khác để đặt thuộc tính</span>
+<span class="nx">titles</span><span class="p">[</span><span class="mf">3</span><span class="p">].</span><span class="nx">className</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;title&quot;</span><span class="p">;</span>
+<span class="nx">titles</span><span class="p">[</span><span class="mf">3</span><span class="p">].</span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;fourth-title&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="them-class-bang-classlist">
+<h3>Thêm class bằng classList<a class="headerlink" href="#them-class-bang-classlist" title="Link to this heading">#</a></h3>
+<p>Phương thức classList là một phương pháp tốt để thêm lớp bổ sung. Nó không ghi đè lớp ban đầu nếu một lớp tồn tại mà nó thêm lớp bổ sung cho phần tử.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">//cách khác để đặt thuộc tính: thêm lớp, không ghi đè</span>
+<span class="nx">titles</span><span class="p">[</span><span class="mf">3</span><span class="p">].</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;header-title&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="xoa-class-bang-remove">
+<h3>Xóa class bằng remove<a class="headerlink" href="#xoa-class-bang-remove" title="Link to this heading">#</a></h3>
+<p>Tương tự như việc thêm, chúng ta cũng có thể xóa lớp khỏi một phần tử. Chúng ta có thể xóa một lớp cụ thể khỏi một phần tử.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">//cách khác để đặt thuộc tính: thêm lớp, không ghi đè</span>
+<span class="nx">titles</span><span class="p">[</span><span class="mf">3</span><span class="p">].</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;header-title&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="them-van-ban-vao-phan-tu-html">
+<h2>Thêm Văn Bản vào Phần Tử HTML<a class="headerlink" href="#them-van-ban-vao-phan-tu-html" title="Link to this heading">#</a></h2>
+<p>Một HTML được xây dựng bởi một thẻ mở, một thẻ đóng và một nội dung văn bản. Chúng ta có thể thêm nội dung văn bản bằng thuộc tính <em>textContent</em> hoặc *innerHTML.</p>
+<section id="them-noi-dung-van-ban-bang-textcontent">
+<h3>Thêm nội dung văn bản bằng textContent<a class="headerlink" href="#them-noi-dung-van-ban-bang-textcontent" title="Link to this heading">#</a></h3>
+<p>Thuộc tính <em>textContent</em> được sử dụng để thêm văn bản vào một phần tử HTML.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">titles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&quot;h1&quot;</span><span class="p">);</span>
+<span class="nx">titles</span><span class="p">[</span><span class="mf">3</span><span class="p">].</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Tiêu đề Thứ Tư&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="them-noi-dung-van-ban-bang-innerhtml">
+<h3>Thêm Nội Dung Văn Bản bằng innerHTML<a class="headerlink" href="#them-noi-dung-van-ban-bang-innerhtml" title="Link to this heading">#</a></h3>
+<p>Nhiều người thường nhầm lẫn giữa <em>textContent</em> và <em>innerHTML</em>. <em>textContent</em> được sử dụng để thêm văn bản vào một phần tử HTML, tuy nhiên <em>innerHTML</em> có thể thêm một phần tử HTML hoặc các phần tử là con.</p>
+<section id="noi-dung-van-ban">
+<h4>Nội dung Văn Bản<a class="headerlink" href="#noi-dung-van-ban" title="Link to this heading">#</a></h4>
+<p>Chúng ta gán thuộc tính đối tượng <em>textContent</em> cho một văn bản</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">titles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&quot;h1&quot;</span><span class="p">);</span>
+<span class="nx">titles</span><span class="p">[</span><span class="mf">3</span><span class="p">].</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Tiêu đề Thứ Tư&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="inner-html">
+<h4>Inner HTML<a class="headerlink" href="#inner-html" title="Link to this heading">#</a></h4>
+<p>Chúng ta sử dụng thuộc tính innerHTML khi chúng ta muốn thay thế hoặc thêm một nội dung con hoàn toàn mới cho một phần tử cha.
+Giá trị chúng ta gán sẽ là một chuỗi của các phần tử HTML.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>JavaScript cho Mọi Người:DOM<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;wrapper&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Những Thách Thức của Asabeneh Yetayeh trong năm 2020<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Thách Thức 30 Ngày Của JavaScript<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">lists</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">    &lt;li&gt;Thách Thức 30 Ngày của Python Đã Hoàn Thành&lt;/li&gt;</span>
+<span class="sb">            &lt;li&gt;Thách Thức 30 Ngày của JavaScript Đang Tiếp Tục&lt;/li&gt;</span>
+<span class="sb">            &lt;li&gt;Thách Thức 30 Ngày của React Sắp Tới&lt;/li&gt;</span>
+<span class="sb">            &lt;li&gt;Thách Thức 30 Ngày của FullStack Sắp Tới&lt;/li&gt;</span>
+<span class="sb">            &lt;li&gt;Thách Thức 30 Ngày của Data Analysis Sắp Tới&lt;/li&gt;</span>
+<span class="sb">            &lt;li&gt;Thách Thức 30 Ngày của React Native Sắp Tới&lt;/li&gt;</span>
+<span class="sb">            &lt;li&gt;Thách Thức 30 Ngày của Machine Learning Sắp Tới&lt;/li&gt;`</span><span class="p">;</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">ul</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;ul&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">ul</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">lists</span><span class="p">;</span>
+<span class="w">    </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Thuộc tính innerHTML cũng cho phép chúng ta loại bỏ tất cả các phần tử con của một phần tử cha. Thay vì sử dụng removeChild() tôi khuyên bạn nên sử dụng phương pháp sau.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="err">```</span><span class="na">html</span>
+<span class="err">&lt;!</span><span class="na">DOCTYPE</span> <span class="na">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>JavaScript for Everyone: DOM<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;wrapper&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Thách Thức của Asabeneh Yetayeh trong năm 2020<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Thách Thức 30 Ngày Của JavaScript<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Thách Thức 30 Ngày của Python Đã Hoàn Thành<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Thách Thức 30 Ngày của JavaScript Đang Tiếp Tục<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Thách Thức 30 Ngày của React Sắp Tới<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Thách Thức 30 Ngày của FullStack Sắp Tới<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Thách Thức 30 Ngày của Data Analysis Sắp Tới<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Thách Thức 30 Ngày của React Native Sắp Tới<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Thách Thức 30 Ngày của Machine Learning Sắp Tới<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">ul</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;ul&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">ul</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="them-kieu-dang">
+<h2>Thêm kiểu dáng<a class="headerlink" href="#them-kieu-dang" title="Link to this heading">#</a></h2>
+<section id="them-mau-sac">
+<h3>Thêm Màu Sắc<a class="headerlink" href="#them-mau-sac" title="Link to this heading">#</a></h3>
+<p>Hãy thêm một số kiểu dáng cho các tiêu đề của chúng ta. Nếu phần tử có chỉ số chẵn, chúng ta sẽ đặt màu xanh lá cây, ngược lại đặt màu đỏ.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">titles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&quot;h1&quot;</span><span class="p">);</span>
+<span class="nx">titles</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">title</span><span class="p">,</span><span class="w"> </span><span class="nx">i</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">title</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;24px&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// tất cả các tiêu đề sẽ có kích thước font 24px</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">title</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;green&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">title</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;red&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</section>
+<section id="them-mau-nen">
+<h3>Thêm Màu Nền<a class="headerlink" href="#them-mau-nen" title="Link to this heading">#</a></h3>
+<p>Hãy thêm một số kiểu dáng cho các tiêu đề của chúng ta. Nếu phần tử có chỉ số chẵn, chúng ta sẽ đặt màu nền xanh lá cây, ngược lại đặt màu nền đỏ.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">titles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&quot;h1&quot;</span><span class="p">);</span>
+<span class="nx">titles</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">title</span><span class="p">,</span><span class="w"> </span><span class="nx">i</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">title</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;24px&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// tất cả các tiêu đề sẽ có kích thước font 24px</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">title</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;green&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">title</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;red&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</section>
+<section id="them-kich-thuoc-font">
+<h3>Thêm Kích Thước Font<a class="headerlink" href="#them-kich-thuoc-font" title="Link to this heading">#</a></h3>
+<p>Hãy thêm một số kiểu dáng cho các tiêu đề của chúng ta. Nếu phần tử có chỉ số chẵn, chúng ta sẽ đặt kích thước font là 20px, ngược lại là 30px.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">titles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&quot;h1&quot;</span><span class="p">);</span>
+<span class="nx">titles</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">title</span><span class="p">,</span><span class="w"> </span><span class="nx">i</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">title</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;24px&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// tất cả các tiêu đề sẽ có kích thước font 24px</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">title</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;20px&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">title</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;30px&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Như bạn đã nhận thấy, các thuộc tính của css khi sử dụng trong JavaScript sẽ là dạng camelCase. Các thuộc tính CSS sau khi chúng ta sử dụng trong JavaScript sẽ được viết hoa chữ cái đầu tiên. Ví dụ: background-color sẽ thành backgroundColor, font-size sẽ thành fontSize, font-family sẽ thành fontFamily, margin-bottom sẽ thành marginBottom.</p>
+<hr class="docutils" />
+<p>Bạn đã học DOM và bây giờ bạn có khả năng xây dựng và phát triển ứng dụng.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book/chapter_js"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="18_promises.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">🫵 Promises</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="20_event.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">🎨 Sự kiện</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mo-hinh-doi-tuong-tai-lieu-dom-ngay-1">Mô hình Đối tượng Tài liệu (DOM) - Ngày 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-phan-tu">Lấy Phần Tử</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-phan-tu-bang-ten-the">Lấy phần tử bằng tên thẻ</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-phan-tu-bang-ten-lop">Lấy phần tử bằng tên lớp</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-mot-phan-tu-bang-id">Lấy một phần tử bằng id</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-phan-tu-bang-cach-su-dung-phuong-thuc-queryselector">Lấy phần tử bằng cách sử dụng phương thức querySelector</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#them-thuoc-tinh">Thêm thuộc tính</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#them-thuoc-tinh-bang-cach-su-dung-setattribute">Thêm thuộc tính bằng cách sử dụng setAttribute</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#them-thuoc-tinh-ma-khong-su-dung-setattribute">Thêm thuộc tính mà không sử dụng setAttribute</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#them-class-bang-classlist">Thêm class bằng classList</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xoa-class-bang-remove">Xóa class bằng remove</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#them-van-ban-vao-phan-tu-html">Thêm Văn Bản vào Phần Tử HTML</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#them-noi-dung-van-ban-bang-textcontent">Thêm nội dung văn bản bằng textContent</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#them-noi-dung-van-ban-bang-innerhtml">Thêm Nội Dung Văn Bản bằng innerHTML</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#noi-dung-van-ban">Nội dung Văn Bản</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-html">Inner HTML</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#them-kieu-dang">Thêm kiểu dáng</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#them-mau-sac">Thêm Màu Sắc</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#them-mau-nen">Thêm Màu Nền</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#them-kich-thuoc-font">Thêm Kích Thước Font</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Duong Trung Kien, Nguyen Duy Khanh, Ho Minh Khanh
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

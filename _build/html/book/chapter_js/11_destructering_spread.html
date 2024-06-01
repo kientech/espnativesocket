@@ -1,0 +1,1215 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>11. Destructuring and Spreading &#8212; ESPNativeSocket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/chapter_js/11_destructering_spread';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ESPNativeSocket</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Xin Chào 👋
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">GIỚI THIỆU</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/introduction_member.html">🤝 Thành Viên</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/iot_intro.html">🧑🏻‍💻 IoT và Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/websocket_intro.html">🚀 WebSocket</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/esp32_intro.html">🔎 ESP32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/nativewind_intro.html">📱 React Native &amp; Tailwind CSS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">PHÂN TÍCH</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/smartcool.html">📌 Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_project.html">💡 Đặc Điểm &amp; Chức Năng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_esp32_websocket.html">🖥️ Tính Năng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_reactnative_tailwindcss.html">📲 Thiết Kế Giao Diện</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">CÀI ĐẶT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/arduino_esp32.html">🔑 Arduino IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/nodejs_npm.html">🛰️ NodeJs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/native_cli.html">🖌️ React Native CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/tailwindcss.html">📕 Tailwind CSS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">JAVASCRIPT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_intro_js.html"><strong>🎨 JavaScript Là Gì?</strong></a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="02_datatype.html">🖥️ Kiểu Dữ Liệu</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="02-1_primitive.html">Kiểu Dữ Liệu Nguyên Thuỷ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-2_complex.html">Kiểu Dữ Liệu Phức Tạp</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="03_boolean_operator_date.html">💡 Các Toán Tử</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_condition.html">🤔 Câu Điều Kiện</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_loop.html">🔁 Vòng Lặp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_function.html">🧐 Hàm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_array.html">🚎 Array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_object.html">📒 Object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_set_map.html">🤗 Set và Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_regular_expression.html">🕐 Biểu Thức Chính Quy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_console.html">💻 Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_error_handling.html">🧨 Xử Lý Lỗi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_classes.html">⏳ OOP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_json.html">😃 JSON</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_web_storage.html">👩 Bộ Nhớ Web</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_promises.html">🫵 Promises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_dom.html">🎬 DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_event.html">🎨 Sự kiện</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">REACT NATIVE</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_component_react_tailwind/component_react_native.html">😊 Thành Phần</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">ỨNG DỤNG</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/create_app.html">👨‍💻 Cài Đặt và Cấu Hình</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/ui_screen.html">📱 Giao Diện Ứng Dụng</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">SERVER</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/create_node.html">🛠️ Tạo Một Dự Án NodeJs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/express_socket.html">1. Nhập thư viện và thiết lập cổng</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/connect_server.html">⏱️ Triển Khai Máy Chủ với Heroku</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">PHẦN CỨNG</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/intro.html">⌨️ Giới Thiệu Phần Cứng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/arduino.html">💎 Arduino Uno R3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/i2c.html">⏱️ Module I2C LCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/relay.html">🛠️ Module Relay 5V</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/protocol.html">🗣️ Phương Thức Giao Tiếp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/test_hardware_esp32.html">🛠️ Kiểm tra ESP32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/test_hardware_lm35.html">✍️ Kiểm tra LM35</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/conclude.html">✍️ Kết Luận</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">MÔ HÌNH HOÀN THIỆN</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_final/software.html">📱 Phần Mềm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_final/hardware.html">🦾 Phần Cứng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_final/product.html">🎓 Demo Sản Phẩm</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/codingwithkien/espnativesocket" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/codingwithkien/espnativesocket/issues/new?title=Issue%20on%20page%20%2Fbook/chapter_js/11_destructering_spread.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/book/chapter_js/11_destructering_spread.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>11. Destructuring and Spreading</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#destructuring-and-spread">Destructuring and Spread</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#destructing-arrays">Destructing Arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#destructuring-during-iteration">Destructuring during iteration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#destructuring-object">Destructuring Object</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#renaming-during-structuring">Renaming during structuring</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#object-parameter-without-destructuring">Object parameter without destructuring</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#object-parameter-with-destructuring">Object parameter with destructuring</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#destructuring-object-during-iteration">Destructuring object during iteration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spread-or-rest-operator">Spread or Rest Operator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spread-operator-to-get-the-rest-of-array-elements">Spread operator to get the rest of array elements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spread-operator-to-copy-array">Spread operator to copy array</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spread-operator-to-copy-object">Spread operator to copy object</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spread-operator-with-arrow-function">Spread operator with arrow function</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-1">Exercises: Level 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-2">Exercises: Level 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-3">Exercises: Level 3</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="destructuring-and-spreading">
+<h1>11. Destructuring and Spreading<a class="headerlink" href="#destructuring-and-spreading" title="Link to this heading">#</a></h1>
+<section id="destructuring-and-spread">
+<h2>Destructuring and Spread<a class="headerlink" href="#destructuring-and-spread" title="Link to this heading">#</a></h2>
+<p>Destructuring is a way to unpack arrays, and objects and assigning to a distinct variable.</p>
+<section id="destructing-arrays">
+<h3>Destructing Arrays<a class="headerlink" href="#destructing-arrays" title="Link to this heading">#</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">]</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="p">[</span><span class="nx">numOne</span><span class="p">,</span><span class="w"> </span><span class="nx">numTwo</span><span class="p">,</span><span class="w"> </span><span class="nx">numThree</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numbers</span>
+
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numOne</span><span class="p">,</span><span class="w"> </span><span class="nx">numTwo</span><span class="p">,</span><span class="w"> </span><span class="nx">numThree</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;Asabeneh&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Brook&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;David&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;John&#39;</span><span class="p">]</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="p">[</span><span class="nx">firstPerson</span><span class="p">,</span><span class="w"> </span><span class="nx">secondPerson</span><span class="p">,</span><span class="w"> </span><span class="nx">thirdPerson</span><span class="p">,</span><span class="w"> </span><span class="nx">fourthPerson</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">names</span>
+
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">firstPerson</span><span class="p">,</span><span class="w"> </span><span class="nx">secondPerson</span><span class="p">,</span><span class="nx">thirdPerson</span><span class="p">,</span><span class="w"> </span><span class="nx">fourthPerson</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Asabeneh<span class="w"> </span>Brook<span class="w"> </span>David<span class="w"> </span>John
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">scientificConstants</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">2.72</span><span class="p">,</span><span class="w"> </span><span class="mf">3.14</span><span class="p">,</span><span class="w"> </span><span class="mf">9.81</span><span class="p">,</span><span class="w"> </span><span class="mf">37</span><span class="p">,</span><span class="w"> </span><span class="mf">100</span><span class="p">]</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="p">[</span><span class="nx">e</span><span class="p">,</span><span class="w"> </span><span class="nx">pi</span><span class="p">,</span><span class="w"> </span><span class="nx">gravity</span><span class="p">,</span><span class="w"> </span><span class="nx">bodyTemp</span><span class="p">,</span><span class="w"> </span><span class="nx">boilingTemp</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">scientificConstants</span>
+
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">pi</span><span class="p">,</span><span class="nx">gravity</span><span class="p">,</span><span class="w"> </span><span class="nx">bodyTemp</span><span class="p">,</span><span class="w"> </span><span class="nx">boilingTemp</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="m">2</span>.72<span class="w"> </span><span class="m">3</span>.14<span class="w"> </span><span class="m">9</span>.81<span class="w"> </span><span class="m">37</span><span class="w"> </span><span class="m">100</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">fullStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">[</span><span class="s1">&#39;HTML&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;JS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;React&#39;</span><span class="p">],</span>
+<span class="w">  </span><span class="p">[</span><span class="s1">&#39;Node&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Express&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;MongoDB&#39;</span><span class="p">]</span>
+<span class="p">]</span>
+<span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">frontEnd</span><span class="p">,</span><span class="w"> </span><span class="nx">backEnd</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fullStack</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">frontEnd</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">backEnd</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="s2">&quot;HTML&quot;</span>,<span class="w"> </span><span class="s2">&quot;CSS&quot;</span>,<span class="w"> </span><span class="s2">&quot;JS&quot;</span>,<span class="w"> </span><span class="s2">&quot;React&quot;</span><span class="o">]</span>
+<span class="o">[</span><span class="s2">&quot;Node&quot;</span>,<span class="w"> </span><span class="s2">&quot;Express&quot;</span>,<span class="w"> </span><span class="s2">&quot;MongoDB&quot;</span><span class="o">]</span>
+</pre></div>
+</div>
+<p>If we like to skip on of the values in the array we use additional comma. The comma helps to omit the value at that specific index</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">]</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="p">[</span><span class="nx">numOne</span><span class="p">,</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nx">numThree</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numbers</span><span class="w"> </span><span class="c1">//2 is omitted</span>
+
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numOne</span><span class="p">,</span><span class="w"> </span><span class="nx">numThree</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w"> </span><span class="m">3</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;Asabeneh&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Brook&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;David&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;John&#39;</span><span class="p">]</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="nx">secondPerson</span><span class="p">,</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nx">fourthPerson</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">names</span><span class="w"> </span><span class="c1">// first and third person is omitted</span>
+
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">secondPerson</span><span class="p">,</span><span class="w"> </span><span class="nx">fourthPerson</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Brook<span class="w"> </span>John
+</pre></div>
+</div>
+<p>We can use default value in case the value of array for that index is undefined:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="kc">undefined</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Brook&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;David&#39;</span><span class="p">]</span>
+<span class="kd">let</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="nx">firstPerson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Asabeneh&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">secondPerson</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">thirdPerson</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">fourthPerson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;John&#39;</span>
+<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">names</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">firstPerson</span><span class="p">,</span><span class="w"> </span><span class="nx">secondPerson</span><span class="p">,</span><span class="w"> </span><span class="nx">thirdPerson</span><span class="p">,</span><span class="w"> </span><span class="nx">fourthPerson</span><span class="p">)</span><span class="w">  </span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Asabeneh<span class="w"> </span>Brook<span class="w"> </span>David<span class="w"> </span>John
+</pre></div>
+</div>
+<p>We can not assign variable to all the elements in the array. We can destructure few of the first and we can get the remaining as array using spread operator(…).</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">nums</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">6</span><span class="p">,</span><span class="w"> </span><span class="mf">7</span><span class="p">,</span><span class="w"> </span><span class="mf">8</span><span class="p">,</span><span class="w"> </span><span class="mf">9</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">]</span>
+<span class="kd">let</span><span class="w"> </span><span class="p">[</span><span class="nx">num1</span><span class="p">,</span><span class="w"> </span><span class="nx">num2</span><span class="p">,</span><span class="w"> </span><span class="nx">num3</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">rest</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">nums</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">num1</span><span class="p">,</span><span class="w"> </span><span class="nx">num2</span><span class="p">,</span><span class="w"> </span><span class="nx">num3</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">rest</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span>
+<span class="o">[</span><span class="m">4</span>,<span class="w"> </span><span class="m">5</span>,<span class="w"> </span><span class="m">6</span>,<span class="w"> </span><span class="m">7</span>,<span class="w"> </span><span class="m">8</span>,<span class="w"> </span><span class="m">9</span>,<span class="w"> </span><span class="m">10</span><span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="destructuring-during-iteration">
+<h3>Destructuring during iteration<a class="headerlink" href="#destructuring-during-iteration" title="Link to this heading">#</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">countries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[[</span><span class="s1">&#39;Finland&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Helsinki&#39;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;Sweden&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Stockholm&#39;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;Norway&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Oslo&#39;</span><span class="p">]]</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">country</span><span class="p">,</span><span class="w"> </span><span class="nx">city</span><span class="p">]</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">countries</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">country</span><span class="p">,</span><span class="w"> </span><span class="nx">city</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Finland<span class="w"> </span>Helsinki
+Sweden<span class="w"> </span>Stockholm
+Norway<span class="w"> </span>Oslo
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">fullStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">[</span><span class="s1">&#39;HTML&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;JS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;React&#39;</span><span class="p">],</span>
+<span class="w">  </span><span class="p">[</span><span class="s1">&#39;Node&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Express&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;MongoDB&#39;</span><span class="p">]</span>
+<span class="p">]</span>
+
+<span class="k">for</span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">first</span><span class="p">,</span><span class="w"> </span><span class="nx">second</span><span class="p">,</span><span class="w"> </span><span class="nx">third</span><span class="p">]</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">fullStack</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">first</span><span class="p">,</span><span class="w"> </span><span class="nx">second</span><span class="p">,</span><span class="w"> </span><span class="nx">third</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>HTML<span class="w"> </span>CSS<span class="w"> </span>JS
+Node<span class="w"> </span>Express<span class="w"> </span>MongoDB
+</pre></div>
+</div>
+</section>
+<section id="destructuring-object">
+<h3>Destructuring Object<a class="headerlink" href="#destructuring-object" title="Link to this heading">#</a></h3>
+<p>When we destructure the name of the variable we use to destructure should be exactly the same as the key or property of the object. See the example below.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">rectangle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">height</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">area</span><span class="o">:</span><span class="w"> </span><span class="mf">200</span>
+<span class="p">}</span>
+<span class="kd">let</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">,</span><span class="w"> </span><span class="nx">area</span><span class="p">,</span><span class="w"> </span><span class="nx">perimeter</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">rectangle</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">,</span><span class="w"> </span><span class="nx">area</span><span class="p">,</span><span class="w"> </span><span class="nx">perimeter</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="m">20</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">200</span><span class="w"> </span>undefined
+</pre></div>
+</div>
+</section>
+<section id="renaming-during-structuring">
+<h3>Renaming during structuring<a class="headerlink" href="#renaming-during-structuring" title="Link to this heading">#</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">rectangle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">height</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">area</span><span class="o">:</span><span class="w"> </span><span class="mf">200</span>
+<span class="p">}</span>
+<span class="kd">let</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="nx">w</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="o">:</span><span class="w"> </span><span class="nx">h</span><span class="p">,</span><span class="w"> </span><span class="nx">area</span><span class="o">:</span><span class="w"> </span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">perimeter</span><span class="o">:</span><span class="w"> </span><span class="nx">p</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">rectangle</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span><span class="w"> </span><span class="nx">h</span><span class="p">,</span><span class="w"> </span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">p</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="m">20</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">200</span><span class="w"> </span>undefined
+</pre></div>
+</div>
+<p>If the key is not found in the object the variable will be assigned to undefined. Sometimes the key might not be in the object, in that case we can give a default value during declaration. See the example.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">rectangle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">height</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">area</span><span class="o">:</span><span class="w"> </span><span class="mf">200</span>
+<span class="p">}</span>
+<span class="kd">let</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">,</span><span class="w"> </span><span class="nx">area</span><span class="p">,</span><span class="w"> </span><span class="nx">perimeter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">60</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">rectangle</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">,</span><span class="w"> </span><span class="nx">area</span><span class="p">,</span><span class="w"> </span><span class="nx">perimeter</span><span class="p">)</span><span class="w"> </span><span class="c1">//20 10 200 60</span>
+<span class="c1">//Let us modify the object:width to 30 and perimeter to 80</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">rectangle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">height</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">area</span><span class="o">:</span><span class="w"> </span><span class="mf">200</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">perimeter</span><span class="o">:</span><span class="w"> </span><span class="mf">80</span>
+<span class="p">}</span>
+<span class="kd">let</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">,</span><span class="w"> </span><span class="nx">area</span><span class="p">,</span><span class="w"> </span><span class="nx">perimeter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">60</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">rectangle</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">,</span><span class="w"> </span><span class="nx">area</span><span class="p">,</span><span class="w"> </span><span class="nx">perimeter</span><span class="p">)</span><span class="w"> </span><span class="c1">//30 10 200 80</span>
+</pre></div>
+</div>
+<p>Destructuring keys as a function parameters. Let us create a function which takes a rectangle object and it returns a perimeter of a rectangle.</p>
+</section>
+<section id="object-parameter-without-destructuring">
+<h3>Object parameter without destructuring<a class="headerlink" href="#object-parameter-without-destructuring" title="Link to this heading">#</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// Without destructuring</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">rect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">height</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span>
+<span class="p">}</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">calculatePerimeter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">rectangle</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="nx">rectangle</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">rectangle</span><span class="p">.</span><span class="nx">height</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">calculatePerimeter</span><span class="p">(</span><span class="nx">rect</span><span class="p">))</span><span class="w"> </span><span class="c1">// 60</span>
+<span class="c1">//with destructuring</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">//Another Example</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">firstName</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Asabeneh&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">lastName</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Yetayeh&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">250</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">country</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Finland&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">job</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Instructor and Developer&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">skills</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s1">&#39;HTML&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;JavaScript&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;React&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Redux&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Node&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;MongoDB&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Python&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;D3.js&#39;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">languages</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;Amharic&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;English&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Suomi(Finnish)&#39;</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="c1">// Let us create a function which give information about the person object without destructuring</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">getPersonInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">skills</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">obj</span><span class="p">.</span><span class="nx">skills</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">formattedSkills</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">skills</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">languages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">obj</span><span class="p">.</span><span class="nx">languages</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">formattedLanguages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">languages</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span>
+
+<span class="w">  </span><span class="nx">personInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">obj</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">obj</span><span class="p">.</span><span class="nx">lastName</span><span class="si">}</span><span class="sb"> lives in </span><span class="si">${</span><span class="nx">obj</span><span class="p">.</span><span class="nx">country</span><span class="si">}</span><span class="sb">. He is  </span><span class="si">${</span>
+<span class="w">    </span><span class="nx">obj</span><span class="p">.</span><span class="nx">age</span>
+<span class="w">  </span><span class="si">}</span><span class="sb"> years old. He is an </span><span class="si">${</span><span class="nx">obj</span><span class="p">.</span><span class="nx">job</span><span class="si">}</span><span class="sb">. He teaches </span><span class="si">${</span><span class="nx">formattedSkills</span><span class="si">}</span><span class="sb"> and </span><span class="si">${</span>
+<span class="w">    </span><span class="nx">skills</span><span class="p">[</span><span class="nx">skills</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1</span><span class="p">]</span>
+<span class="w">  </span><span class="si">}</span><span class="sb">. He speaks </span><span class="si">${</span><span class="nx">formattedLanguages</span><span class="si">}</span><span class="sb"> and a little bit of </span><span class="si">${</span><span class="nx">languages</span><span class="p">[</span><span class="mf">2</span><span class="p">]</span><span class="si">}</span><span class="sb">.`</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">personInfo</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">getPersonInfo</span><span class="p">(</span><span class="nx">person</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="object-parameter-with-destructuring">
+<h3>Object parameter with destructuring<a class="headerlink" href="#object-parameter-with-destructuring" title="Link to this heading">#</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">calculatePerimeter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="nx">width</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">height</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">calculatePerimeter</span><span class="p">(</span><span class="nx">rect</span><span class="p">))</span><span class="w"> </span><span class="c1">// 60</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// Let us create a function which give information about the person object with destructuring</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">getPersonInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">({</span>
+<span class="w">  </span><span class="nx">firstName</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">lastName</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">age</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">country</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">job</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">skills</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">languages</span>
+<span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">formattedSkills</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">skills</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">formattedLanguages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">languages</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span>
+
+<span class="w">  </span><span class="nx">personInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">firstName</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">lastName</span><span class="si">}</span><span class="sb"> lives in </span><span class="si">${</span><span class="nx">country</span><span class="si">}</span><span class="sb">. He is </span><span class="si">${</span><span class="nx">age</span><span class="si">}</span><span class="sb"> years old. He is an </span><span class="si">${</span><span class="nx">job</span><span class="si">}</span><span class="sb">. He teaches </span><span class="si">${</span><span class="nx">formattedSkills</span><span class="si">}</span><span class="sb"> and </span><span class="si">${</span>
+<span class="w">    </span><span class="nx">skills</span><span class="p">[</span><span class="nx">skills</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1</span><span class="p">]</span>
+<span class="w">  </span><span class="si">}</span><span class="sb">. He speaks </span><span class="si">${</span><span class="nx">formattedLanguages</span><span class="si">}</span><span class="sb"> and a little bit of </span><span class="si">${</span><span class="nx">languages</span><span class="p">[</span><span class="mf">2</span><span class="p">]</span><span class="si">}</span><span class="sb">.`</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">personInfo</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">getPersonInfo</span><span class="p">(</span><span class="nx">person</span><span class="p">))</span>
+<span class="cm">/*</span>
+<span class="cm">Asabeneh Yetayeh lives in Finland. He is  250 years old. He is an Instructor and Developer. He teaches HTML, CSS, JavaScript, React, Redux, Node, MongoDB, Python and D3.js. He speaks Amharic, English and a little bit of Suomi(Finnish)</span>
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</section>
+<section id="destructuring-object-during-iteration">
+<h3>Destructuring object during iteration<a class="headerlink" href="#destructuring-object-during-iteration" title="Link to this heading">#</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">todoList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nx">task</span><span class="o">:</span><span class="s1">&#39;Prepare JS Test&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">time</span><span class="o">:</span><span class="s1">&#39;4/1/2020 8:30&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">completed</span><span class="o">:</span><span class="kc">true</span>
+<span class="p">},</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nx">task</span><span class="o">:</span><span class="s1">&#39;Give JS Test&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">time</span><span class="o">:</span><span class="s1">&#39;4/1/2020 10:00&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">completed</span><span class="o">:</span><span class="kc">false</span>
+<span class="p">},</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nx">task</span><span class="o">:</span><span class="s1">&#39;Assess Test Result&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">time</span><span class="o">:</span><span class="s1">&#39;4/1/2020 1:00&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">completed</span><span class="o">:</span><span class="kc">false</span>
+<span class="p">}</span>
+<span class="p">]</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="nx">task</span><span class="p">,</span><span class="w"> </span><span class="nx">time</span><span class="p">,</span><span class="w"> </span><span class="nx">completed</span><span class="p">}</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">todoList</span><span class="p">){</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">task</span><span class="p">,</span><span class="w"> </span><span class="nx">time</span><span class="p">,</span><span class="w"> </span><span class="nx">completed</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Prepare<span class="w"> </span>JS<span class="w"> </span>Test<span class="w"> </span><span class="m">4</span>/1/2020<span class="w"> </span><span class="m">8</span>:30<span class="w"> </span><span class="nb">true</span>
+Give<span class="w"> </span>JS<span class="w"> </span>Test<span class="w"> </span><span class="m">4</span>/1/2020<span class="w"> </span><span class="m">10</span>:00<span class="w"> </span><span class="nb">false</span>
+Assess<span class="w"> </span>Test<span class="w"> </span>Result<span class="w"> </span><span class="m">4</span>/1/2020<span class="w"> </span><span class="m">1</span>:00<span class="w"> </span><span class="nb">false</span>
+</pre></div>
+</div>
+</section>
+<section id="spread-or-rest-operator">
+<h3>Spread or Rest Operator<a class="headerlink" href="#spread-or-rest-operator" title="Link to this heading">#</a></h3>
+<p>When we destructure an array we use the spread operator(…) to get the rest elements as array. In addition to that we use spread operator to spread array elements to another array.</p>
+</section>
+<section id="spread-operator-to-get-the-rest-of-array-elements">
+<h3>Spread operator to get the rest of array elements<a class="headerlink" href="#spread-operator-to-get-the-rest-of-array-elements" title="Link to this heading">#</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">nums</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">6</span><span class="p">,</span><span class="w"> </span><span class="mf">7</span><span class="p">,</span><span class="w"> </span><span class="mf">8</span><span class="p">,</span><span class="w"> </span><span class="mf">9</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">]</span>
+<span class="kd">let</span><span class="w"> </span><span class="p">[</span><span class="nx">num1</span><span class="p">,</span><span class="w"> </span><span class="nx">num2</span><span class="p">,</span><span class="w"> </span><span class="nx">num3</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">rest</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">nums</span>
+<span class="err">​</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">num1</span><span class="p">,</span><span class="w"> </span><span class="nx">num2</span><span class="p">,</span><span class="w"> </span><span class="nx">num3</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">rest</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span>
+<span class="o">[</span><span class="m">4</span>,<span class="w"> </span><span class="m">5</span>,<span class="w"> </span><span class="m">6</span>,<span class="w"> </span><span class="m">7</span>,<span class="w"> </span><span class="m">8</span>,<span class="w"> </span><span class="m">9</span>,<span class="w"> </span><span class="m">10</span><span class="o">]</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">countries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="s1">&#39;Germany&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;France&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Belgium&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Finland&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Sweden&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Norway&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Denmark&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Iceland&#39;</span>
+<span class="p">]</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="p">[</span><span class="nx">gem</span><span class="p">,</span><span class="w"> </span><span class="nx">fra</span><span class="p">,</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">nordicCountries</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">countries</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">gem</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fra</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">nordicCountries</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Germany
+France
+<span class="o">[</span><span class="s2">&quot;Finland&quot;</span>,<span class="w"> </span><span class="s2">&quot;Sweden&quot;</span>,<span class="w"> </span><span class="s2">&quot;Norway&quot;</span>,<span class="w"> </span><span class="s2">&quot;Denmark&quot;</span>,<span class="w"> </span><span class="s2">&quot;Iceland&quot;</span><span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="spread-operator-to-copy-array">
+<h3>Spread operator to copy array<a class="headerlink" href="#spread-operator-to-copy-array" title="Link to this heading">#</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">evens</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">6</span><span class="p">,</span><span class="w"> </span><span class="mf">8</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">]</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">evenNumbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[...</span><span class="nx">evens</span><span class="p">]</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">odds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">7</span><span class="p">,</span><span class="w"> </span><span class="mf">9</span><span class="p">]</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">oddNumbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[...</span><span class="nx">odds</span><span class="p">]</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">wholeNumbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[...</span><span class="nx">evens</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">odds</span><span class="p">]</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">evenNumbers</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">oddNumbers</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">wholeNumbers</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="m">0</span>,<span class="w"> </span><span class="m">2</span>,<span class="w"> </span><span class="m">4</span>,<span class="w"> </span><span class="m">6</span>,<span class="w"> </span><span class="m">8</span>,<span class="w"> </span><span class="m">10</span><span class="o">]</span>
+<span class="o">[</span><span class="m">1</span>,<span class="w"> </span><span class="m">3</span>,<span class="w"> </span><span class="m">5</span>,<span class="w"> </span><span class="m">7</span>,<span class="w"> </span><span class="m">9</span><span class="o">]</span>
+<span class="o">[</span><span class="m">0</span>,<span class="w"> </span><span class="m">2</span>,<span class="w"> </span><span class="m">4</span>,<span class="w"> </span><span class="m">6</span>,<span class="w"> </span><span class="m">8</span>,<span class="w"> </span><span class="m">10</span>,<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">3</span>,<span class="w"> </span><span class="m">5</span>,<span class="w"> </span><span class="m">7</span>,<span class="w"> </span><span class="m">9</span><span class="o">]</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">frontEnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;HTML&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;JS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;React&#39;</span><span class="p">]</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">backEnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;Node&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Express&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;MongoDB&#39;</span><span class="p">]</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">fullStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[...</span><span class="nx">frontEnd</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">backEnd</span><span class="p">]</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fullStack</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="s2">&quot;HTML&quot;</span>,<span class="w"> </span><span class="s2">&quot;CSS&quot;</span>,<span class="w"> </span><span class="s2">&quot;JS&quot;</span>,<span class="w"> </span><span class="s2">&quot;React&quot;</span>,<span class="w"> </span><span class="s2">&quot;Node&quot;</span>,<span class="w"> </span><span class="s2">&quot;Express&quot;</span>,<span class="w"> </span><span class="s2">&quot;MongoDB&quot;</span><span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="spread-operator-to-copy-object">
+<h3>Spread operator to copy object<a class="headerlink" href="#spread-operator-to-copy-object" title="Link to this heading">#</a></h3>
+<p>We can copy an object using a spread operator</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;Asabeneh&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">title</span><span class="o">:</span><span class="s1">&#39;Programmer&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">country</span><span class="o">:</span><span class="s1">&#39;Finland&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">city</span><span class="o">:</span><span class="s1">&#39;Helsinki&#39;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">copiedUser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{...</span><span class="nx">user</span><span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">copiedUser</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">{</span>name:<span class="w"> </span><span class="s2">&quot;Asabeneh&quot;</span>,<span class="w"> </span>title:<span class="w"> </span><span class="s2">&quot;Programmer&quot;</span>,<span class="w"> </span>country:<span class="w"> </span><span class="s2">&quot;Finland&quot;</span>,<span class="w"> </span>city:<span class="w"> </span><span class="s2">&quot;Helsinki&quot;</span><span class="o">}</span>
+</pre></div>
+</div>
+<p>Modifying or changing the object while copying</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;Asabeneh&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">title</span><span class="o">:</span><span class="s1">&#39;Programmer&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">country</span><span class="o">:</span><span class="s1">&#39;Finland&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">city</span><span class="o">:</span><span class="s1">&#39;Helsinki&#39;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">copiedUser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{...</span><span class="nx">user</span><span class="p">,</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="s1">&#39;instructor&#39;</span><span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">copiedUser</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">{</span>name:<span class="w"> </span><span class="s2">&quot;Asabeneh&quot;</span>,<span class="w"> </span>title:<span class="w"> </span><span class="s2">&quot;instructor&quot;</span>,<span class="w"> </span>country:<span class="w"> </span><span class="s2">&quot;Finland&quot;</span>,<span class="w"> </span>city:<span class="w"> </span><span class="s2">&quot;Helsinki&quot;</span><span class="o">}</span>
+</pre></div>
+</div>
+<section id="spread-operator-with-arrow-function">
+<h4>Spread operator with arrow function<a class="headerlink" href="#spread-operator-with-arrow-function" title="Link to this heading">#</a></h4>
+<p>Whenever we like to write an arrow function which takes unlimited number of arguments we use a spread operator. If we use a spread operator as a parameter, the argument passed when we invoke a function will change to an array.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">sumAllNums</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(...</span><span class="nx">args</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">sumAllNums</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="m">1</span>,<span class="w"> </span><span class="m">2</span>,<span class="w"> </span><span class="m">3</span>,<span class="w"> </span><span class="m">4</span>,<span class="w"> </span><span class="m">5</span><span class="o">]</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">sumAllNums</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(...</span><span class="nx">args</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">args</span><span class="p">){</span>
+<span class="w">    </span><span class="nx">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">num</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">sum</span>
+<span class="w">  </span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sumAllNums</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="m">15</span>
+</pre></div>
+</div>
+<p>🌕 You achieved quite a lot so far. Now, your level of JavaScript is upper intermediate. Keep going! You have just completed day 11 challenges and you are 11 steps a head in to your way to greatness. Now do some exercises for your brain and for your muscle.</p>
+</section>
+</section>
+</section>
+<section id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercises-level-1">
+<h3>Exercises: Level 1<a class="headerlink" href="#exercises-level-1" title="Link to this heading">#</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">constants</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">2.72</span><span class="p">,</span><span class="w"> </span><span class="mf">3.14</span><span class="p">,</span><span class="w"> </span><span class="mf">9.81</span><span class="p">,</span><span class="w"> </span><span class="mf">37</span><span class="p">,</span><span class="w"> </span><span class="mf">100</span><span class="p">]</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">countries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;Finland&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Estonia&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sweden&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Denmark&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Norway&#39;</span><span class="p">]</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">rectangle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">height</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">area</span><span class="o">:</span><span class="w"> </span><span class="mf">200</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">perimeter</span><span class="o">:</span><span class="w"> </span><span class="mf">60</span>
+<span class="p">}</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;Brook&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">scores</span><span class="o">:</span><span class="mf">75</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">skills</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;HTM&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;JS&#39;</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">age</span><span class="o">:</span><span class="mf">16</span>
+<span class="p">},</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;Alex&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">scores</span><span class="o">:</span><span class="mf">80</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">skills</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;HTM&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;JS&#39;</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">age</span><span class="o">:</span><span class="mf">18</span>
+<span class="p">},</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;David&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">scores</span><span class="o">:</span><span class="mf">75</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">skills</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;HTM&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">age</span><span class="o">:</span><span class="mf">22</span>
+<span class="p">},</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;John&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">scores</span><span class="o">:</span><span class="mf">85</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">skills</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;HTML&#39;</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">age</span><span class="o">:</span><span class="mf">25</span>
+<span class="p">},</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;Sara&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">scores</span><span class="o">:</span><span class="mf">95</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">skills</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;HTM&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;JS&#39;</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">26</span>
+<span class="p">},</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;Martha&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">scores</span><span class="o">:</span><span class="mf">80</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">skills</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;HTM&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;JS&#39;</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">age</span><span class="o">:</span><span class="mf">18</span>
+<span class="p">},</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;Thomas&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">scores</span><span class="o">:</span><span class="mf">90</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">skills</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;HTM&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;JS&#39;</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">age</span><span class="o">:</span><span class="mf">20</span>
+<span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Destructure and assign the elements of constants array to e, pi, gravity, humanBodyTemp, waterBoilingTemp.</p></li>
+<li><p>Destructure and assign the elements of countries array to fin, est, sw, den, nor</p></li>
+<li><p>Destructure the rectangle object by its properties or keys.</p></li>
+</ol>
+</section>
+<section id="exercises-level-2">
+<h3>Exercises: Level 2<a class="headerlink" href="#exercises-level-2" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Iterate through the users array and get all the keys of the object using destructuring</p></li>
+<li><p>Find the persons who have less than two skills</p></li>
+</ol>
+</section>
+<section id="exercises-level-3">
+<h3>Exercises: Level 3<a class="headerlink" href="#exercises-level-3" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Destructure the countries object print name, capital, population and languages of all countries</p></li>
+<li><p>A junior developer structure student name, skills and score in array of arrays which may not easy to read. Destructure the following array name to name, skills array to skills, scores array to scores, JavaScript score to jsScore and React score to reactScore variable in one line.</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">student</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;David&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;HTM&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;JS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;React&#39;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">98</span><span class="p">,</span><span class="w"> </span><span class="mf">85</span><span class="p">,</span><span class="w"> </span><span class="mf">90</span><span class="p">,</span><span class="w"> </span><span class="mf">95</span><span class="p">]]</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">skills</span><span class="p">,</span><span class="w"> </span><span class="nx">jsScore</span><span class="p">,</span><span class="w"> </span><span class="nx">reactScore</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>David<span class="w"> </span><span class="o">(</span><span class="m">4</span><span class="o">)</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;HTM&quot;</span>,<span class="w"> </span><span class="s2">&quot;CSS&quot;</span>,<span class="w"> </span><span class="s2">&quot;JS&quot;</span>,<span class="w"> </span><span class="s2">&quot;React&quot;</span><span class="o">]</span><span class="w"> </span><span class="m">90</span><span class="w"> </span><span class="m">95</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Write a function called <em>convertArrayToObject</em> which can convert the array to a structure object.</p></li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">students</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">[</span><span class="s1">&#39;David&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;HTM&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;JS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;React&#39;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">98</span><span class="p">,</span><span class="w"> </span><span class="mf">85</span><span class="p">,</span><span class="w"> </span><span class="mf">90</span><span class="p">,</span><span class="w"> </span><span class="mf">95</span><span class="p">]],</span>
+<span class="w">        </span><span class="p">[</span><span class="s1">&#39;John&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;HTM&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;JS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;React&#39;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">85</span><span class="p">,</span><span class="w"> </span><span class="mf">80</span><span class="p">,</span><span class="w"> </span><span class="mf">85</span><span class="p">,</span><span class="w"> </span><span class="mf">80</span><span class="p">]]</span>
+<span class="w">      </span><span class="p">]</span>
+
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">convertArrayToObject</span><span class="p">(</span><span class="nx">students</span><span class="p">))</span>
+<span class="w">    </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;David&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">skills</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;HTM&#39;</span><span class="p">,</span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="s1">&#39;JS&#39;</span><span class="p">,</span><span class="s1">&#39;React&#39;</span><span class="p">],</span>
+<span class="w">        </span><span class="nx">scores</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">98</span><span class="p">,</span><span class="mf">85</span><span class="p">,</span><span class="mf">90</span><span class="p">,</span><span class="mf">95</span><span class="p">]</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;John&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">skills</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;HTM&#39;</span><span class="p">,</span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="s1">&#39;JS&#39;</span><span class="p">,</span><span class="s1">&#39;React&#39;</span><span class="p">],</span>
+<span class="w">        </span><span class="nx">scores</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">85</span><span class="p">,</span><span class="w"> </span><span class="mf">80</span><span class="p">,</span><span class="mf">85</span><span class="p">,</span><span class="mf">80</span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Copy the student object to newStudent without mutating the original object. In the new object add the following ?</p></li>
+</ol>
+<ul class="simple">
+<li><p>Add Bootstrap with level 8 to the front end skill sets</p></li>
+<li><p>Add Express with level 9 to the back end skill sets</p></li>
+<li><p>Add SQL with level 8 to the data base skill sets</p></li>
+<li><p>Add SQL without level to the data science skill sets</p></li>
+</ul>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">student</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;David&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">25</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">skills</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">frontEnd</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nx">skill</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;HTML&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nx">skill</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">8</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nx">skill</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;JS&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">8</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nx">skill</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;React&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">9</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nx">backEnd</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nx">skill</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Node&#39;</span><span class="p">,</span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">7</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nx">skill</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;GraphQL&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">8</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nx">dataBase</span><span class="o">:</span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nx">skill</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;MongoDB&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">7.5</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nx">dataScience</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;Python&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;R&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;D3.js&#39;</span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The copied object output should look like this:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;David&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">25</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">skills</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">frontEnd</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="nx">skill</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;HTML&#39;</span><span class="p">,</span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="nx">skill</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">8</span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="nx">skill</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;JS&#39;</span><span class="p">,</span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">8</span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="nx">skill</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;React&#39;</span><span class="p">,</span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">9</span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="nx">skill</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BootStrap&#39;</span><span class="p">,</span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">8</span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nx">backEnd</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="nx">skill</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Node&#39;</span><span class="p">,</span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">7</span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="nx">skill</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;GraphQL&#39;</span><span class="p">,</span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">8</span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="nx">skill</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Express&#39;</span><span class="p">,</span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">9</span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nx">dataBase</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">skill</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;MongoDB&#39;</span><span class="p">,</span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">7.5</span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">skill</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;SQL&#39;</span><span class="p">,</span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">8</span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nx">dataScience</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;Python&#39;</span><span class="p">,</span><span class="s1">&#39;R&#39;</span><span class="p">,</span><span class="s1">&#39;D3.js&#39;</span><span class="p">,</span><span class="s1">&#39;SQL&#39;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book/chapter_js"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#destructuring-and-spread">Destructuring and Spread</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#destructing-arrays">Destructing Arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#destructuring-during-iteration">Destructuring during iteration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#destructuring-object">Destructuring Object</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#renaming-during-structuring">Renaming during structuring</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#object-parameter-without-destructuring">Object parameter without destructuring</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#object-parameter-with-destructuring">Object parameter with destructuring</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#destructuring-object-during-iteration">Destructuring object during iteration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spread-or-rest-operator">Spread or Rest Operator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spread-operator-to-get-the-rest-of-array-elements">Spread operator to get the rest of array elements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spread-operator-to-copy-array">Spread operator to copy array</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spread-operator-to-copy-object">Spread operator to copy object</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spread-operator-with-arrow-function">Spread operator with arrow function</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-1">Exercises: Level 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-2">Exercises: Level 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-level-3">Exercises: Level 3</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Duong Trung Kien, Nguyen Duy Khanh, Ho Minh Khanh
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

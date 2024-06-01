@@ -1,0 +1,841 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>📱 Phần Mềm &#8212; ESPNativeSocket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/chapter_final/software';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="🦾 Phần Cứng" href="hardware.html" />
+    <link rel="prev" title="✍️ Kết Luận" href="../chapter_hardware/conclude.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ESPNativeSocket</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Xin Chào 👋
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">GIỚI THIỆU</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/introduction_member.html">🤝 Thành Viên</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/iot_intro.html">🧑🏻‍💻 IoT và Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/websocket_intro.html">🚀 WebSocket</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/esp32_intro.html">🔎 ESP32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/nativewind_intro.html">📱 React Native &amp; Tailwind CSS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">PHÂN TÍCH</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/smartcool.html">📌 Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_project.html">💡 Đặc Điểm &amp; Chức Năng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_esp32_websocket.html">🖥️ Tính Năng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_reactnative_tailwindcss.html">📲 Thiết Kế Giao Diện</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">CÀI ĐẶT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/arduino_esp32.html">🔑 Arduino IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/nodejs_npm.html">🛰️ NodeJs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/native_cli.html">🖌️ React Native CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/tailwindcss.html">📕 Tailwind CSS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">JAVASCRIPT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/01_intro_js.html"><strong>🎨 JavaScript Là Gì?</strong></a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_js/02_datatype.html">🖥️ Kiểu Dữ Liệu</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_js/02-1_primitive.html">Kiểu Dữ Liệu Nguyên Thuỷ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_js/02-2_complex.html">Kiểu Dữ Liệu Phức Tạp</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/03_boolean_operator_date.html">💡 Các Toán Tử</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/04_condition.html">🤔 Câu Điều Kiện</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/06_loop.html">🔁 Vòng Lặp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/07_function.html">🧐 Hàm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/05_array.html">🚎 Array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/08_object.html">📒 Object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/10_set_map.html">🤗 Set và Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/12_regular_expression.html">🕐 Biểu Thức Chính Quy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/13_console.html">💻 Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/14_error_handling.html">🧨 Xử Lý Lỗi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/15_classes.html">⏳ OOP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/16_json.html">😃 JSON</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/17_web_storage.html">👩 Bộ Nhớ Web</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/18_promises.html">🫵 Promises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/19_dom.html">🎬 DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/20_event.html">🎨 Sự kiện</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">REACT NATIVE</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_component_react_tailwind/component_react_native.html">😊 Thành Phần</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">ỨNG DỤNG</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/create_app.html">👨‍💻 Cài Đặt và Cấu Hình</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/ui_screen.html">📱 Giao Diện Ứng Dụng</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">SERVER</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/create_node.html">🛠️ Tạo Một Dự Án NodeJs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/express_socket.html">1. Nhập thư viện và thiết lập cổng</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/connect_server.html">⏱️ Triển Khai Máy Chủ với Heroku</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">PHẦN CỨNG</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/intro.html">⌨️ Giới Thiệu Phần Cứng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/arduino.html">💎 Arduino Uno R3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/i2c.html">⏱️ Module I2C LCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/relay.html">🛠️ Module Relay 5V</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/protocol.html">🗣️ Phương Thức Giao Tiếp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/test_hardware_esp32.html">🛠️ Kiểm tra ESP32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/test_hardware_lm35.html">✍️ Kiểm tra LM35</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/conclude.html">✍️ Kết Luận</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">MÔ HÌNH HOÀN THIỆN</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">📱 Phần Mềm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">🦾 Phần Cứng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="product.html">🎓 Demo Sản Phẩm</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/codingwithkien/espnativesocket" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/codingwithkien/espnativesocket/issues/new?title=Issue%20on%20page%20%2Fbook/chapter_final/software.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/book/chapter_final/software.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>📱 Phần Mềm</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#video-huong-dan-xay-dung-phan-mem-voi-react-native-va-tailwindcss">Video Hướng Dẫn Xây Dựng Phần Mềm với React Native và TailwindCSS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chuc-nang-cua-tung-thanh-phan">Chức Năng Của Từng Thành Phần</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="phan-mem">
+<h1>📱 Phần Mềm<a class="headerlink" href="#phan-mem" title="Link to this heading">#</a></h1>
+<p>Để thuận tiện cho việc quản lý và điều khiển các thiết bị Iots, nhóm em xây dựng một ứng dụng điện thoại để dễ dàng theo dõi sự hoạt động của từng thiết bị.</p>
+<section id="video-huong-dan-xay-dung-phan-mem-voi-react-native-va-tailwindcss">
+<h2>Video Hướng Dẫn Xây Dựng Phần Mềm với React Native và TailwindCSS<a class="headerlink" href="#video-huong-dan-xay-dung-phan-mem-voi-react-native-va-tailwindcss" title="Link to this heading">#</a></h2>
+<iframe width="766" height="543" src="https://www.youtube.com/embed/rHwufwg7wp0" title="SmartCool IoT App with React Native and Websocket | Mobile App Development | KienTech" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</section>
+<section id="chuc-nang-cua-tung-thanh-phan">
+<h2>Chức Năng Của Từng Thành Phần<a class="headerlink" href="#chuc-nang-cua-tung-thanh-phan" title="Link to this heading">#</a></h2>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">View</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">Text</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">Image</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">SafeAreaView</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">TouchableOpacity</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">Alert</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">ScrollView</span><span class="p">,</span>
+<span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;react-native&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">React</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useRef</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;react&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">ArrowDownIcon</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">Bars3CenterLeftIcon</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">BoltIcon</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">LightBulbIcon</span><span class="p">,</span>
+<span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;react-native-heroicons/solid&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">storeColors</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;../theme&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">SensorInfo</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;../components/SensorInfo&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">ModeApp</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;../components/ModeApp&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">ButtonSwitch</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;../components/ButtonSwitch&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useState</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;react&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">WebSocket</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;react-native-websocket&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">{</span> <span class="pre">View,</span> <span class="pre">Text,</span> <span class="pre">Image,</span> <span class="pre">SafeAreaView,</span> <span class="pre">TouchableOpacity,</span> <span class="pre">Alert,</span> <span class="pre">ScrollView</span> <span class="pre">}</span> <span class="pre">from</span> <span class="pre">&quot;react-native&quot;;</span></code> : Nhập các thành phần giao diện từ thư viện React Native như View, Text, Image, SafeAreaView, TouchableOpacity, Alert, ScrollView.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">React,</span> <span class="pre">{</span> <span class="pre">useRef</span> <span class="pre">}</span> <span class="pre">from</span> <span class="pre">&quot;react&quot;;</span></code> : Nhập thư viện React và hàm <code class="docutils literal notranslate"><span class="pre">useRef</span></code> từ React.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">}</span> <span class="pre">from</span> <span class="pre">&quot;react-native-heroicons/solid&quot;;</span></code> : Nhập các biểu tượng từ thư viện <code class="docutils literal notranslate"><span class="pre">react-native-heroicons/solid</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">{</span> <span class="pre">storeColors</span> <span class="pre">}</span> <span class="pre">from</span> <span class="pre">&quot;../theme&quot;;</span></code> : Nhập màu sắc được định nghĩa trong tệp <code class="docutils literal notranslate"><span class="pre">theme</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">SensorInfo</span> <span class="pre">from</span> <span class="pre">&quot;../components/SensorInfo&quot;;</span></code> : Nhập thành phần <code class="docutils literal notranslate"><span class="pre">SensorInfo</span></code> từ thư mục components.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">ModeApp</span> <span class="pre">from</span> <span class="pre">&quot;../components/ModeApp&quot;;</span></code> : Nhập thành phần <code class="docutils literal notranslate"><span class="pre">ModeApp</span></code> từ thư mục components.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">ButtonSwitch</span> <span class="pre">from</span> <span class="pre">&quot;../components/ButtonSwitch&quot;;</span></code> : Nhập thành phần <code class="docutils literal notranslate"><span class="pre">ButtonSwitch</span></code> từ thư mục components.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">{</span> <span class="pre">useState</span> <span class="pre">}</span> <span class="pre">from</span> <span class="pre">&quot;react&quot;;</span></code> : Nhập hàm <code class="docutils literal notranslate"><span class="pre">useState</span></code> từ React.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">WebSocket</span> <span class="pre">from</span> <span class="pre">&quot;react-native-websocket&quot;;</span></code> : Nhập thành phần <code class="docutils literal notranslate"><span class="pre">WebSocket</span></code> từ thư viện <code class="docutils literal notranslate"><span class="pre">react-native-websocket</span></code>.</p></li>
+</ul>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="c1">// const SERVER_URL = &quot;ws://192.168.1.9:8080&quot;;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">SERVER_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ws://server-iot-54eb32613657.herokuapp.com/&quot;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">HomeScreen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">isSwitchEnableFan</span><span class="p">,</span><span class="w"> </span><span class="nx">setIsSwitchEnableFan</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">isSwitchEnableLed</span><span class="p">,</span><span class="w"> </span><span class="nx">setIsSwitchEnableLed</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">sensorData</span><span class="p">,</span><span class="w"> </span><span class="nx">setSensorData</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">temperature</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">humidity</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">onFan</span><span class="p">,</span><span class="w"> </span><span class="nx">setOnFan</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="s2">&quot;Off&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">onLed</span><span class="p">,</span><span class="w"> </span><span class="nx">setOnLed</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="s2">&quot;Off&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">websocketRef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useRef</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">SERVER_URL</span> <span class="pre">=</span> <span class="pre">&quot;ws://192.168.1.9:8080&quot;;</span></code> : Định nghĩa URL của WebSocket server.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">HomeScreen</span> <span class="pre">=</span> <span class="pre">()</span> <span class="pre">=&gt;</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">}</span></code> : Định nghĩa hàm <code class="docutils literal notranslate"><span class="pre">HomeScreen</span></code>, đây là một thành phần giao diện.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">[isSwitchEnableFan,</span> <span class="pre">setIsSwitchEnableFan]</span> <span class="pre">=</span> <span class="pre">useState(false);</span></code> : Khai báo trạng thái và hàm cập nhật trạng thái của công tắc quạt, ban đầu là <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">[isSwitchEnableLed,</span> <span class="pre">setIsSwitchEnableLed]</span> <span class="pre">=</span> <span class="pre">useState(false);</span></code> : Khai báo trạng thái và hàm cập nhật trạng thái của công tắc đèn LED, ban đầu là <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">[sensorData,</span> <span class="pre">setSensorData]</span> <span class="pre">=</span> <span class="pre">useState({</span> <span class="pre">temperature:</span> <span class="pre">0,</span> <span class="pre">humidity:</span> <span class="pre">0</span> <span class="pre">});</span></code> : Khai báo trạng thái và hàm cập nhật trạng thái của dữ liệu cảm biến (nhiệt độ và độ ẩm), ban đầu là <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">temperature:</span> <span class="pre">0,</span> <span class="pre">humidity:</span> <span class="pre">0</span> <span class="pre">}</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">[onFan,</span> <span class="pre">setOnFan]</span> <span class="pre">=</span> <span class="pre">useState(&quot;Off&quot;);</span></code> : Khai báo trạng thái và hàm cập nhật trạng thái của quạt, ban đầu là “Off”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">[onLed,</span> <span class="pre">setOnLed]</span> <span class="pre">=</span> <span class="pre">useState(&quot;Off&quot;);</span></code> : Khai báo trạng thái và hàm cập nhật trạng thái của đèn LED, ban đầu là “Off”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">websocketRef</span> <span class="pre">=</span> <span class="pre">useRef(null);</span></code> : Khai báo một <code class="docutils literal notranslate"><span class="pre">ref</span></code> để lưu trữ tham chiếu đến WebSocket.</p></li>
+</ul>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">onMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">setSensorData</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">handleOnError</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;🚀 ~ handleOnError ~ error:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">onMessage</span> <span class="pre">=</span> <span class="pre">(event)</span> <span class="pre">=&gt;</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">};</span></code> : Định nghĩa hàm <code class="docutils literal notranslate"><span class="pre">onMessage</span></code> để xử lý dữ liệu nhận được từ WebSocket, chuyển đổi dữ liệu từ chuỗi JSON và cập nhật trạng thái <code class="docutils literal notranslate"><span class="pre">sensorData</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">handleOnError</span> <span class="pre">=</span> <span class="pre">(error)</span> <span class="pre">=&gt;</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">};</span></code> : Định nghĩa hàm <code class="docutils literal notranslate"><span class="pre">handleOnError</span></code> để xử lý lỗi của WebSocket và in lỗi ra console.</p></li>
+</ul>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">toggleSwitchFan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">websocketRef</span><span class="p">.</span><span class="nx">current</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;fanControl&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="o">!</span><span class="nx">isSwitchEnableFan</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;off&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">    </span><span class="nx">websocketRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">message</span><span class="p">));</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">newState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="nx">isSwitchEnableFan</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">setIsSwitchEnableFan</span><span class="p">(</span><span class="nx">newState</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">setOnFan</span><span class="p">(</span><span class="nx">newState</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">&quot;On&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Off&quot;</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">toggleSwitchFan</span> <span class="pre">=</span> <span class="pre">()</span> <span class="pre">=&gt;</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">};</span></code> : Định nghĩa hàm <code class="docutils literal notranslate"><span class="pre">toggleSwitchFan</span></code> để bật/tắt quạt.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(websocketRef.current)</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">}</span></code> : Kiểm tra xem WebSocket có đang hoạt động hay không.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">message</span> <span class="pre">=</span> <span class="pre">{</span> <span class="pre">type:</span> <span class="pre">&quot;fanControl&quot;,</span> <span class="pre">status:</span> <span class="pre">!isSwitchEnableFan</span> <span class="pre">?</span> <span class="pre">&quot;on&quot;</span> <span class="pre">:</span> <span class="pre">&quot;off&quot;</span> <span class="pre">};</span></code> : Tạo tin nhắn điều khiển quạt dựa trên trạng thái hiện tại.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">websocketRef.current.send(JSON.stringify(message));</span></code> : Gửi tin nhắn qua WebSocket.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">newState</span> <span class="pre">=</span> <span class="pre">!isSwitchEnableFan;</span></code> : Đảo trạng thái của công tắc quạt.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setIsSwitchEnableFan(newState);</span></code> : Cập nhật trạng thái công tắc quạt.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setOnFan(newState</span> <span class="pre">?</span> <span class="pre">&quot;On&quot;</span> <span class="pre">:</span> <span class="pre">&quot;Off&quot;);</span></code> : Cập nhật trạng thái hiển thị của quạt.</p></li>
+</ul>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">toggleSwitchLed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">websocketRef</span><span class="p">.</span><span class="nx">current</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ledControl&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="o">!</span><span class="nx">isSwitchEnableLed</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;off&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">    </span><span class="nx">websocketRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">message</span><span class="p">));</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">newState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="nx">isSwitchEnableLed</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">setIsSwitchEnableLed</span><span class="p">(</span><span class="nx">newState</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">setOnLed</span><span class="p">(</span><span class="nx">newState</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">&quot;On&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Off&quot;</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Tương tự <code class="docutils literal notranslate"><span class="pre">toggleSwitchFan</span></code>, hàm <code class="docutils literal notranslate"><span class="pre">toggleSwitchLed</span></code> thực hiện bật/tắt đèn LED.</p></li>
+</ul>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="p">&lt;</span><span class="nt">SafeAreaView</span><span class="p">&gt;</span>
+<span class="w">      </span><span class="p">&lt;</span><span class="nt">View</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;p-4&quot;</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="p">&lt;</span><span class="nt">View</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;flex-row justify-between items-center&quot;</span><span class="p">&gt;</span>
+<span class="w">          </span><span class="p">&lt;</span><span class="nt">Bars3CenterLeftIcon</span><span class="w"> </span><span class="na">size</span><span class="o">=</span><span class="p">{</span><span class="mf">25</span><span class="p">}</span><span class="w"> </span><span class="na">color</span><span class="o">=</span><span class="p">{</span><span class="nx">storeColors</span><span class="p">.</span><span class="nx">textBlack</span><span class="p">}</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="w">          </span><span class="p">&lt;</span><span class="nt">View</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;flex-row justify-center items-center&quot;</span><span class="p">&gt;</span>
+<span class="w">            </span><span class="p">&lt;</span><span class="nt">Text</span><span class="p">&gt;</span><span class="nx">My</span><span class="w"> </span><span class="nx">home</span><span class="p">&lt;/</span><span class="nt">Text</span><span class="p">&gt;</span>
+<span class="w">            </span><span class="p">&lt;</span><span class="nt">ArrowDownIcon</span><span class="w"> </span><span class="na">size</span><span class="o">=</span><span class="p">{</span><span class="mf">15</span><span class="p">}</span><span class="w"> </span><span class="na">color</span><span class="o">=</span><span class="p">{</span><span class="nx">storeColors</span><span class="p">.</span><span class="nx">textBlack</span><span class="p">}</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="w">          </span><span class="p">&lt;/</span><span class="nt">View</span><span class="p">&gt;</span>
+<span class="w">          </span><span class="p">&lt;</span><span class="nt">TouchableOpacity</span><span class="w"> </span><span class="na">onPress</span><span class="o">=</span><span class="p">{()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">Alert</span><span class="p">.</span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Go to Profile Screen&quot;</span><span class="p">)}&gt;</span>
+<span class="w">            </span><span class="p">&lt;</span><span class="nt">Image</span>
+<span class="w">              </span><span class="na">source</span><span class="o">=</span><span class="p">{</span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;../assets/images/avatar.jpg&quot;</span><span class="p">)}</span>
+<span class="w">              </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;w-8 h-8 rounded-full&quot;</span>
+<span class="w">            </span><span class="p">/&gt;</span>
+<span class="w">          </span><span class="p">&lt;/</span><span class="nt">TouchableOpacity</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="p">&lt;/</span><span class="nt">View</span><span class="p">&gt;</span>
+<span class="w">      </span><span class="p">&lt;/</span><span class="nt">View</span><span class="p">&gt;</span>
+
+<span class="w">      </span><span class="p">&lt;</span><span class="nt">ScrollView</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="p">&lt;</span><span class="nt">WebSocket</span><span class="w"> </span><span class="na">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">websocketRef</span><span class="p">}</span><span class="w"> </span><span class="na">url</span><span class="o">=</span><span class="p">{</span><span class="nx">SERVER_URL</span><span class="p">}</span><span class="w"> </span><span class="p">/&gt;</span>
+
+<span class="w">        </span><span class="p">&lt;</span><span class="nt">View</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;mt-4 mx-4&quot;</span><span class="p">&gt;</span>
+<span class="w">          </span><span class="p">&lt;</span><span class="nt">View</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;flex-row item-center justify-between gap-2&quot;</span><span class="p">&gt;</span>
+<span class="w">            </span><span class="p">&lt;</span><span class="nt">SensorInfo</span>
+<span class="w">              </span><span class="na">title</span><span class="o">=</span><span class="s">&quot;Temperature&quot;</span>
+<span class="w">              </span><span class="na">source</span><span class="o">=</span><span class="p">{</span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;../assets/icons/temperature.png&quot;</span><span class="p">)}</span>
+<span class="w">              </span><span class="na">value</span><span class="o">=</span><span class="s">&quot;0&quot;</span>
+<span class="w">            </span><span class="p">/&gt;</span>
+<span class="w">            </span><span class="p">&lt;</span><span class="nt">SensorInfo</span>
+<span class="w">              </span><span class="na">title</span><span class="o">=</span><span class="s">&quot;Humidity&quot;</span>
+<span class="w">              </span><span class="na">source</span><span class="o">=</span><span class="p">{</span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;../assets/icons/humidity.png&quot;</span><span class="p">)}</span>
+<span class="w">              </span><span class="na">value</span><span class="o">=</span><span class="s">&quot;0&quot;</span>
+<span class="w">            </span><span class="p">/&gt;</span>
+<span class="w">            </span><span class="p">&lt;</span><span class="nt">SensorInfo</span>
+<span class="w">              </span><span class="na">title</span><span class="o">=</span><span class="s">&quot;Co2&quot;</span>
+<span class="w">              </span><span class="na">source</span><span class="o">=</span><span class="p">{</span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;../assets/icons/cloud.png&quot;</span><span class="p">)}</span>
+<span class="w">              </span><span class="na">value</span><span class="o">=</span><span class="s">&quot;0&quot;</span>
+<span class="w">            </span><span class="p">/&gt;</span>
+<span class="w">          </span><span class="p">&lt;/</span><span class="nt">View</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">(</span> <span class="pre">...</span> <span class="pre">)</span></code> : Trả về giao diện của <code class="docutils literal notranslate"><span class="pre">HomeScreen</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SafeAreaView</span></code> : Đảm bảo rằng nội dung nằm trong khu vực an toàn của màn hình.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">View</span></code> : Một thành phần để bố trí các phần tử con.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Bars3CenterLeftIcon</span></code>, <code class="docutils literal notranslate"><span class="pre">ArrowDownIcon</span></code> : Các biểu tượng được hiển thị trong giao diện.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TouchableOpacity</span></code> : Một thành phần có thể nhấn được.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Image</span></code> : Hiển thị hình ảnh đại diện.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ScrollView</span></code> : Cho phép cuộn nội dung.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WebSocket</span> <span class="pre">ref={websocketRef}</span> <span class="pre">url={SERVER_URL}</span></code> : Thiết lập kết nối WebSocket với URL đã định nghĩa.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SensorInfo</span></code> : Hiển thị thông tin cảm biến (nhiệt độ, độ ẩm, CO2).</p></li>
+</ul>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">View</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;flex-row justify-between items-center flex-1 w-full mt-4&quot;</span><span class="p">&gt;</span>
+<span class="w">  </span><span class="p">&lt;</span><span class="nt">View</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;my-2&quot;</span><span class="p">&gt;</span>
+<span class="w">    </span><span class="p">&lt;</span><span class="nt">ModeApp</span>
+<span class="w">      </span><span class="na">icon</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">LightBulbIcon</span><span class="w"> </span><span class="na">size</span><span class="o">=</span><span class="p">{</span><span class="mf">15</span><span class="p">}</span><span class="w"> </span><span class="na">color</span><span class="o">=</span><span class="p">{</span><span class="nx">storeColors</span><span class="p">.</span><span class="nx">textBlack</span><span class="p">}</span><span class="w"> </span><span class="p">/&gt;}</span>
+<span class="w">      </span><span class="na">text</span><span class="o">=</span><span class="s">&quot;Light mode&quot;</span>
+<span class="w">      </span><span class="na">onPress</span><span class="o">=</span><span class="p">{()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">Alert</span><span class="p">.</span><span class="nx">alert</span><span class="p">(</span><span class="sb">`Light mode`</span><span class="p">)}</span>
+<span class="w">    </span><span class="p">/&gt;</span>
+<span class="w">    </span><span class="p">&lt;</span><span class="nt">ModeApp</span>
+<span class="w">      </span><span class="na">icon</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">LightBulbIcon</span><span class="w"> </span><span class="na">size</span><span class="o">=</span><span class="p">{</span><span class="mf">15</span><span class="p">}</span><span class="w"> </span><span class="na">color</span><span class="o">=</span><span class="p">{</span><span class="nx">storeColors</span><span class="p">.</span><span class="nx">textBlack</span><span class="p">}</span><span class="w"> </span><span class="p">/&gt;}</span>
+<span class="w">      </span><span class="na">text</span><span class="o">=</span><span class="s">&quot;Dark mode&quot;</span>
+<span class="w">      </span><span class="na">onPress</span><span class="o">=</span><span class="p">{()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">Alert</span><span class="p">.</span><span class="nx">alert</span><span class="p">(</span><span class="sb">`Dark mode`</span><span class="p">)}</span>
+<span class="w">    </span><span class="p">/&gt;</span>
+<span class="w">  </span><span class="p">&lt;/</span><span class="nt">View</span><span class="p">&gt;</span>
+
+<span class="w">  </span><span class="p">&lt;</span><span class="nt">View</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;my-2&quot;</span><span class="p">&gt;</span>
+<span class="w">    </span><span class="p">&lt;</span><span class="nt">ModeApp</span>
+<span class="w">      </span><span class="na">icon</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">LightBulbIcon</span><span class="w"> </span><span class="na">size</span><span class="o">=</span><span class="p">{</span><span class="mf">15</span><span class="p">}</span><span class="w"> </span><span class="na">color</span><span class="o">=</span><span class="p">{</span><span class="nx">storeColors</span><span class="p">.</span><span class="nx">textBlack</span><span class="p">}</span><span class="w"> </span><span class="p">/&gt;}</span>
+<span class="w">      </span><span class="na">text</span><span class="o">=</span><span class="s">&quot;Sunline mode&quot;</span>
+<span class="w">    </span><span class="p">/&gt;</span>
+<span class="w">    </span><span class="p">&lt;</span><span class="nt">ModeApp</span>
+<span class="w">      </span><span class="na">icon</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">LightBulbIcon</span><span class="w"> </span><span class="na">size</span><span class="o">=</span><span class="p">{</span><span class="mf">15</span><span class="p">}</span><span class="w"> </span><span class="na">color</span><span class="o">=</span><span class="p">{</span><span class="nx">storeColors</span><span class="p">.</span><span class="nx">textBlack</span><span class="p">}</span><span class="w"> </span><span class="p">/&gt;}</span>
+<span class="w">      </span><span class="na">text</span><span class="o">=</span><span class="s">&quot;Light mode&quot;</span>
+<span class="w">    </span><span class="p">/&gt;</span>
+<span class="w">  </span><span class="p">&lt;/</span><span class="nt">View</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">View</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ModeApp</span></code> : Hiển thị các chế độ ánh sáng khác nhau (Light mode, Dark mode, Sunline mode) với biểu tượng và chức năng <code class="docutils literal notranslate"><span class="pre">onPress</span></code>.</p></li>
+</ul>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">View</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;my-6 rounded-2xl bg-blue-400&quot;</span><span class="p">&gt;</span>
+<span class="w">  </span><span class="p">&lt;</span><span class="nt">View</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;px-4 py-5&quot;</span><span class="p">&gt;</span>
+<span class="w">    </span><span class="p">&lt;</span><span class="nt">TouchableOpacity</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;flex-row items-center&quot;</span><span class="p">&gt;</span>
+<span class="w">      </span><span class="p">&lt;</span><span class="nt">View</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;bg-white p-3 rounded-full&quot;</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="p">&lt;</span><span class="nt">BoltIcon</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="w">      </span><span class="p">&lt;/</span><span class="nt">View</span><span class="p">&gt;</span>
+<span class="w">      </span><span class="p">&lt;</span><span class="nt">View</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;ml-5&quot;</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="p">&lt;</span><span class="nt">Text</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;text-white font-bold py-1&quot;</span><span class="p">&gt;</span><span class="mf">2.45</span><span class="nx">kWh</span><span class="p">&lt;/</span><span class="nt">Text</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="p">&lt;</span><span class="nt">Text</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;text-white&quot;</span><span class="p">&gt;</span><span class="nx">Power</span><span class="w"> </span><span class="nx">usage</span><span class="w"> </span><span class="nx">today</span><span class="p">&lt;/</span><span class="nt">Text</span><span class="p">&gt;</span>
+<span class="w">      </span><span class="p">&lt;/</span><span class="nt">View</span><span class="p">&gt;</span>
+<span class="w">    </span><span class="p">&lt;/</span><span class="nt">TouchableOpacity</span><span class="p">&gt;</span>
+<span class="w">  </span><span class="p">&lt;/</span><span class="nt">View</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">View</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Hiển thị thông tin về lượng điện năng tiêu thụ hôm nay với biểu tượng và văn bản.</p></li>
+</ul>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="w">          </span><span class="p">&lt;</span><span class="nt">View</span><span class="p">&gt;</span>
+<span class="w">            </span><span class="p">&lt;</span><span class="nt">View</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;flex&quot;</span><span class="p">&gt;</span>
+<span class="w">              </span><span class="p">&lt;</span><span class="nt">ButtonSwitch</span>
+<span class="w">                </span><span class="na">title</span><span class="o">=</span><span class="s">&quot;Fan&quot;</span>
+<span class="w">                </span><span class="na">state</span><span class="o">=</span><span class="p">{</span><span class="nx">onFan</span><span class="p">}</span>
+<span class="w">                </span><span class="na">source</span><span class="o">=</span><span class="p">{</span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;../assets/icons/fan.png&quot;</span><span class="p">)}</span>
+<span class="w">                </span><span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">isSwitchEnableFan</span><span class="p">}</span>
+<span class="w">                </span><span class="na">onValueChange</span><span class="o">=</span><span class="p">{</span><span class="nx">toggleSwitchFan</span><span class="p">}</span>
+<span class="w">              </span><span class="p">/&gt;</span>
+<span class="w">              </span><span class="p">&lt;</span><span class="nt">ButtonSwitch</span>
+<span class="w">                </span><span class="na">title</span><span class="o">=</span><span class="s">&quot;Light&quot;</span>
+<span class="w">                </span><span class="na">state</span><span class="o">=</span><span class="p">{</span><span class="nx">onLed</span><span class="p">}</span>
+<span class="w">                </span><span class="na">source</span><span class="o">=</span><span class="p">{</span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;../assets/icons/led.png&quot;</span><span class="p">)}</span>
+<span class="w">                </span><span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">isSwitchEnableLed</span><span class="p">}</span>
+<span class="w">                </span><span class="na">onValueChange</span><span class="o">=</span><span class="p">{</span><span class="nx">toggleSwitchLed</span><span class="p">}</span>
+<span class="w">              </span><span class="p">/&gt;</span>
+<span class="w">            </span><span class="p">&lt;/</span><span class="nt">View</span><span class="p">&gt;</span>
+<span class="w">          </span><span class="p">&lt;/</span><span class="nt">View</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="p">&lt;/</span><span class="nt">View</span><span class="p">&gt;</span>
+<span class="w">      </span><span class="p">&lt;/</span><span class="nt">ScrollView</span><span class="p">&gt;</span>
+<span class="w">    </span><span class="p">&lt;/</span><span class="nt">SafeAreaView</span><span class="p">&gt;</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">HomeScreen</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ButtonSwitch</span></code> : Thành phần để bật/tắt quạt và đèn LED với biểu tượng, trạng thái và hàm thay đổi giá trị.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">default</span> <span class="pre">HomeScreen;</span></code> : Xuất thành phần <code class="docutils literal notranslate"><span class="pre">HomeScreen</span></code> để sử dụng ở nơi khác.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book/chapter_final"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../chapter_hardware/conclude.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">✍️ Kết Luận</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="hardware.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">🦾 Phần Cứng</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#video-huong-dan-xay-dung-phan-mem-voi-react-native-va-tailwindcss">Video Hướng Dẫn Xây Dựng Phần Mềm với React Native và TailwindCSS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chuc-nang-cua-tung-thanh-phan">Chức Năng Của Từng Thành Phần</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Duong Trung Kien, Nguyen Duy Khanh, Ho Minh Khanh
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

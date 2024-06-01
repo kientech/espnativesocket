@@ -1,0 +1,89 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+  - caption: GIỚI THIỆU
+    chapters:
+      - file: book/chapter_intro/introduction_member
+      - file: book/chapter_intro/iot_intro
+      - file: book/chapter_intro/websocket_intro
+      - file: book/chapter_intro/esp32_intro
+      - file: book/chapter_intro/nativewind_intro
+  - caption: PHÂN TÍCH
+    chapters:
+      - file: book/chapter_analysis/smartcool
+      - file: book/chapter_analysis/feature_project
+      - file: book/chapter_analysis/feature_esp32_websocket
+      - file: book/chapter_analysis/feature_reactnative_tailwindcss
+  - caption: CÀI ĐẶT
+    chapters:
+      - file: book/chapter_install/arduino_esp32
+      - file: book/chapter_install/nodejs_npm
+      - file: book/chapter_install/native_cli
+      - file: book/chapter_install/tailwindcss
+  - caption: JAVASCRIPT
+    chapters:
+      - file: book/chapter_js/01_intro_js
+      - file: book/chapter_js/02_datatype
+        sections:
+          - file: book/chapter_js/02-1_primitive.md
+          - file: book/chapter_js/02-2_complex.md
+      - file: book/chapter_js/03_boolean_operator_date
+      - file: book/chapter_js/04_condition
+      - file: book/chapter_js/06_loop
+      - file: book/chapter_js/07_function
+      - file: book/chapter_js/05_array
+      - file: book/chapter_js/08_object
+      - file: book/chapter_js/10_set_map
+      - file: book/chapter_js/11_destructuring_spread
+      - file: book/chapter_js/12_regular_expression
+      - file: book/chapter_js/13_console
+      - file: book/chapter_js/14_error_handling
+      - file: book/chapter_js/15_classes
+      - file: book/chapter_js/16_json
+      - file: book/chapter_js/17_web_storage
+      - file: book/chapter_js/18_promises
+      - file: book/chapter_js/19_dom
+      - file: book/chapter_js/20_event
+  - caption: REACT NATIVE
+    chapters:
+      - file: book/chapter_component_react_tailwind/component_react_native
+      # - file: book/chapter_component_react_tailwind/tailwindcss
+  # - caption: TAILWIND CSS
+  #   chapters:
+  #     - file: book/chapter_tailwindcss/overview
+  #     - file: book/chapter_tailwindcss/flex_basic
+  #     - file: book/chapter_tailwindcss/flex_direction
+  #     - file: book/chapter_tailwindcss/04_flex_wrap
+  #     - file: book/chapter_tailwindcss/05_flex
+  - caption: ỨNG DỤNG
+    chapters:
+      - file: book/chapter_app/create_app
+      - file: book/chapter_app/ui_screen
+      # - file: book/chapter_app/data_ui
+  - caption: SERVER
+    chapters:
+      - file: book/chapter_server/create_node
+      - file: book/chapter_server/express_socket
+      - file: book/chapter_server/connect_server
+      # - file: book/chapter_server/esp32_native
+  - caption: PHẦN CỨNG
+    chapters:
+      - file: book/chapter_hardware/intro
+      - file: book/chapter_hardware/arduino
+      - file: book/chapter_hardware/i2c
+      - file: book/chapter_hardware/relay
+      - file: book/chapter_hardware/protocol
+      - file: book/chapter_hardware/test_hardware
+      - file: book/chapter_hardware/test_hardware_esp32
+      - file: book/chapter_hardware/test_hardware_lm35
+      # - file: book/chapter_hardware/conclude
+  
+  - caption: MÔ HÌNH HOÀN THIỆN
+    chapters:
+      - file: book/chapter_final/software
+      - file: book/chapter_final/hardware
+      - file: book/chapter_final/product
+

@@ -1,0 +1,683 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>🧑🏻‍💻 IoT và Hệ Thống Tản Nhiệt &#8212; ESPNativeSocket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/chapter_intro/iot_intro';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="🚀 WebSocket" href="websocket_intro.html" />
+    <link rel="prev" title="🤝 Thành Viên" href="introduction_member.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ESPNativeSocket</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Xin Chào 👋
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">GIỚI THIỆU</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction_member.html">🤝 Thành Viên</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">🧑🏻‍💻 IoT và Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="websocket_intro.html">🚀 WebSocket</a></li>
+<li class="toctree-l1"><a class="reference internal" href="esp32_intro.html">🔎 ESP32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nativewind_intro.html">📱 React Native &amp; Tailwind CSS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">PHÂN TÍCH</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/smartcool.html">📌 Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_project.html">💡 Đặc Điểm &amp; Chức Năng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_esp32_websocket.html">🖥️ Tính Năng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_reactnative_tailwindcss.html">📲 Thiết Kế Giao Diện</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">CÀI ĐẶT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/arduino_esp32.html">🔑 Arduino IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/nodejs_npm.html">🛰️ NodeJs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/native_cli.html">🖌️ React Native CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/tailwindcss.html">📕 Tailwind CSS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">JAVASCRIPT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/01_intro_js.html"><strong>🎨 JavaScript Là Gì?</strong></a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_js/02_datatype.html">🖥️ Kiểu Dữ Liệu</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_js/02-1_primitive.html">Kiểu Dữ Liệu Nguyên Thuỷ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_js/02-2_complex.html">Kiểu Dữ Liệu Phức Tạp</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/03_boolean_operator_date.html">💡 Các Toán Tử</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/04_condition.html">🤔 Câu Điều Kiện</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/06_loop.html">🔁 Vòng Lặp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/07_function.html">🧐 Hàm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/05_array.html">🚎 Array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/08_object.html">📒 Object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/10_set_map.html">🤗 Set và Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/12_regular_expression.html">🕐 Biểu Thức Chính Quy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/13_console.html">💻 Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/14_error_handling.html">🧨 Xử Lý Lỗi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/15_classes.html">⏳ OOP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/16_json.html">😃 JSON</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/17_web_storage.html">👩 Bộ Nhớ Web</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/18_promises.html">🫵 Promises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/19_dom.html">🎬 DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_js/20_event.html">🎨 Sự kiện</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">REACT NATIVE</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_component_react_tailwind/component_react_native.html">😊 Thành Phần</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">ỨNG DỤNG</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/create_app.html">👨‍💻 Cài Đặt và Cấu Hình</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/ui_screen.html">📱 Giao Diện Ứng Dụng</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">SERVER</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/create_node.html">🛠️ Tạo Một Dự Án NodeJs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/express_socket.html">1. Nhập thư viện và thiết lập cổng</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/connect_server.html">⏱️ Triển Khai Máy Chủ với Heroku</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">PHẦN CỨNG</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/intro.html">⌨️ Giới Thiệu Phần Cứng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/arduino.html">💎 Arduino Uno R3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/i2c.html">⏱️ Module I2C LCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/relay.html">🛠️ Module Relay 5V</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/protocol.html">🗣️ Phương Thức Giao Tiếp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/test_hardware_esp32.html">🛠️ Kiểm tra ESP32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/test_hardware_lm35.html">✍️ Kiểm tra LM35</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/conclude.html">✍️ Kết Luận</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">MÔ HÌNH HOÀN THIỆN</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_final/software.html">📱 Phần Mềm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_final/hardware.html">🦾 Phần Cứng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_final/product.html">🎓 Demo Sản Phẩm</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/codingwithkien/espnativesocket" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/codingwithkien/espnativesocket/issues/new?title=Issue%20on%20page%20%2Fbook/chapter_intro/iot_intro.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/book/chapter_intro/iot_intro.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>🧑🏻‍💻 IoT và Hệ Thống Tản Nhiệt</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gioi-thieu-tong-quan-he-thong-iot">Giới thiệu tổng quan hệ thống IoT</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gioi-thieu">Giới thiệu</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tai-sao-iot-lai-quan-trong-nhu-vay">Tại sao IoT lại quan trọng như vậy?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uu-va-nhuoc-diem-cua-iot">Ưu và Nhược điểm của IoT</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ung-dung-cua-iot-nang-tam-cuoc-song">Ứng dụng của IoT: Nâng tầm cuộc sống</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ung-dung-cua-iot-trong-he-thong-tan-nhiet">Ứng dụng của IoT trong hệ thống tản nhiệt</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#theo-doi-va-giam-sat-tu-xa">Theo dõi và giám sát từ xa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#toi-uu-hoa-hieu-suat-hoat-dong">Tối ưu hóa hiệu suất hoạt động</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#du-doan-va-phong-ngua-hong-hoc">Dự đoán và phòng ngừa hỏng hóc</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tich-hop-voi-he-thong-quan-ly-toan-dien">Tích hợp với hệ thống quản lý toàn diện</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuong-tac-va-dieu-khien-tu-dong">Tương tác và điều khiển tự động:</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="iot-va-he-thong-tan-nhiet">
+<h1>🧑🏻‍💻 IoT và Hệ Thống Tản Nhiệt<a class="headerlink" href="#iot-va-he-thong-tan-nhiet" title="Link to this heading">#</a></h1>
+<section id="gioi-thieu-tong-quan-he-thong-iot">
+<h2>Giới thiệu tổng quan hệ thống IoT<a class="headerlink" href="#gioi-thieu-tong-quan-he-thong-iot" title="Link to this heading">#</a></h2>
+<section id="gioi-thieu">
+<h3>Giới thiệu<a class="headerlink" href="#gioi-thieu" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://www.oracle.com/vn/internet-of-things/what-is-iot/"><strong>✍️ Internet vạn vật (IoT)</strong></a> là mạng lưới kết nối các thiết bị vật lý, phương tiện, con người và các đối tượng khác được nhúng với các cảm biến, phần mềm và kết nối mạng để thu thập và trao đổi dữ liệu. IoT có tiềm năng to lớn để thay đổi cách thức chúng ta sống, làm việc và tương tác với thế giới xung quanh.</p>
+<p><img alt="Internet of Thinhs" src="../../_images/iot.jpeg" /></p>
+</section>
+<section id="tai-sao-iot-lai-quan-trong-nhu-vay">
+<h3>Tại sao IoT lại quan trọng như vậy?<a class="headerlink" href="#tai-sao-iot-lai-quan-trong-nhu-vay" title="Link to this heading">#</a></h3>
+<p>✍️ Trong vài năm qua, IoT đã trở thành một trong những công nghệ quan trọng nhất của thế kỷ 21. Giờ đây, chúng ta có thể kết nối các vật dụng hàng ngày—thiết bị nhà bếp, ô tô, máy điều nhiệt, thiết bị giám sát trẻ em—với Internet thông qua các thiết bị nhúng, nên có thể thực hiện giao tiếp liền mạch giữa con người, quy trình và mọi thứ.</p>
+<p>Bằng phương tiện điện toán chi phí thấp, đám mây, dữ liệu lớn, phân tích và công nghệ di động, vật chất có thể chia sẻ và thu thập dữ liệu với sự can thiệp tối thiểu của con người. Trong thế giới siêu kết nối này, hệ thống kỹ thuật số có thể ghi lại, giám sát và điều chỉnh từng tương tác giữa những thứ được kết nối. Thế giới vật chất gặp gỡ thế giới kỹ thuật số—và chúng hợp tác với nhau.</p>
+<p><img alt="IoT Quan Trọng" src="https://media.licdn.com/dms/image/C5612AQEXUVdH_EUvxg/article-cover_image-shrink_600_2000/0/1647336304802?e=2147483647&amp;v=beta&amp;t=TUDDxguEevIQ8wdApT1ryii8WLP4EDAvGePZrTQlPUQ" /></p>
+</section>
+<section id="uu-va-nhuoc-diem-cua-iot">
+<h3>Ưu và Nhược điểm của IoT<a class="headerlink" href="#uu-va-nhuoc-diem-cua-iot" title="Link to this heading">#</a></h3>
+<p><strong>😍 Ưu điểm:</strong></p>
+<ul class="simple">
+<li><p><strong>Nâng cao hiệu quả hoạt động:</strong> IoT giúp tự động hóa các quy trình thủ công, thu thập dữ liệu thời gian thực và đưa ra quyết định dựa trên dữ liệu, từ đó nâng cao hiệu quả hoạt động trong nhiều lĩnh vực.</p></li>
+<li><p><strong>Tiết kiệm năng lượng và chi phí:</strong> IoT giúp tối ưu hóa việc sử dụng năng lượng, giảm thiểu lãng phí và tiết kiệm chi phí vận hành trong nhiều lĩnh vực như nhà thông minh, thành phố thông minh, sản xuất thông minh, v.v.</p></li>
+<li><p><strong>Cải thiện chất lượng cuộc sống:</strong> IoT mang đến các tiện ích và dịch vụ mới, giúp nâng cao chất lượng cuộc sống trong nhiều lĩnh vực như chăm sóc sức khỏe, giáo dục, giải trí, v.v.</p></li>
+<li><p><strong>Tạo ra các dịch vụ mới:</strong> IoT mở ra cơ hội phát triển các dịch vụ mới dựa trên dữ liệu, đáp ứng nhu cầu ngày càng đa dạng của người dùng.</p></li>
+<li><p><strong>Nâng cao năng lực cạnh tranh:</strong> Doanh nghiệp áp dụng IoT có thể nâng cao năng lực cạnh tranh bằng cách tăng hiệu quả hoạt động, giảm chi phí và tạo ra các dịch vụ mới.</p></li>
+<li><p><strong>Tăng cường khả năng thích ứng với môi trường:</strong> IoT giúp thu thập dữ liệu về môi trường và đưa ra các dự báo, hỗ trợ con người thích ứng với các thay đổi môi trường.</p></li>
+</ul>
+<p><strong>🥹 Nhược điểm:</strong></p>
+<ul class="simple">
+<li><p><strong>An ninh mạng:</strong> Các thiết bị IoT có thể bị tấn công mạng, dẫn đến rò rỉ dữ liệu và ảnh hưởng đến an ninh mạng.</p></li>
+<li><p><strong>Bảo mật dữ liệu:</strong> Việc thu thập và sử dụng dữ liệu cá nhân cần được thực hiện một cách minh bạch và có trách nhiệm để đảm bảo bảo mật dữ liệu.</p></li>
+<li><p><strong>Tính tương thích:</strong> Các thiết bị IoT từ các nhà sản xuất khác nhau cần có khả năng tương tác với nhau để tạo ra hệ thống IoT thống nhất.</p></li>
+<li><p><strong>Khả năng mở rộng:</strong> Hệ thống IoT cần có khả năng mở rộng để đáp ứng nhu cầu ngày càng tăng.</p></li>
+<li><p><strong>Quyền riêng tư:</strong> Việc thu thập và sử dụng dữ liệu cá nhân cần được thực hiện một cách minh bạch và có trách nhiệm để đảm bảo quyền riêng tư của người dùng.</p></li>
+<li><p><strong>Năng lực nguồn nhân lực:</strong> Cần có đội ngũ nhân lực có trình độ để triển khai và vận hành hệ thống IoT.</p></li>
+</ul>
+</section>
+</section>
+<section id="ung-dung-cua-iot-nang-tam-cuoc-song">
+<h2>Ứng dụng của IoT: Nâng tầm cuộc sống<a class="headerlink" href="#ung-dung-cua-iot-nang-tam-cuoc-song" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>🏠 Nhà thông minh:</strong> Điều khiển từ xa (bật/tắt đèn, điều chỉnh nhiệt độ,…), tự động tưới cây, tự động điều chỉnh ánh sáng, giám sát an ninh,…</p></li>
+<li><p><strong>🏢 Thành phố thông minh:</strong> Hệ thống đèn tín hiệu thông minh, quản lý giao thông hiệu quả, giảm tắc nghẽn và ô nhiễm, hệ thống cảm biến theo dõi chất lượng không khí, nước, cảnh báo ô nhiễm và xử lý kịp thời, hệ thống thông minh tối ưu hóa việc sử dụng năng lượng, tiết kiệm chi phí và bảo vệ môi trường….</p></li>
+<li><p><strong>🌾 Nông nghiệp thông minh:</strong> Hệ thống tưới nước thông minh dựa trên độ ẩm đất, tiết kiệm nước và tối ưu hóa năng suất, hệ thống bón phân theo nhu cầu cây trồng, giảm chi phí và tăng hiệu quả, hệ thống cảm biến theo dõi tình trạng cây, phát hiện sâu bệnh và đưa ra giải pháp kịp thời….</p></li>
+<li><p><strong>🧠 Sản xuất thông minh:</strong> Hệ thống thông minh theo dõi và điều khiển dây chuyền sản xuất, đảm bảo hiệu quả và chất lượng, hệ thống phân tích dữ liệu dự đoán lỗi máy móc, hệ thống thông minh tối ưu hóa quy trình, nâng cao hiệu quả và năng suất…</p></li>
+</ul>
+</section>
+<section id="ung-dung-cua-iot-trong-he-thong-tan-nhiet">
+<h2>Ứng dụng của IoT trong hệ thống tản nhiệt<a class="headerlink" href="#ung-dung-cua-iot-trong-he-thong-tan-nhiet" title="Link to this heading">#</a></h2>
+<p>Internet of Things (IoT) đã mang lại sự tiện lợi và hiệu suất cao cho nhiều lĩnh vực, và hệ thống tản nhiệt không phải là ngoại lệ. Sự kết hợp giữa IoT và hệ thống tản nhiệt mang lại khả năng theo dõi, kiểm soát và tối ưu hóa hiệu suất tản nhiệt một cách thông minh và tự động. Dưới đây là một số ứng dụng của IoT trong hệ thống tản nhiệt</p>
+<section id="theo-doi-va-giam-sat-tu-xa">
+<h3>Theo dõi và giám sát từ xa<a class="headerlink" href="#theo-doi-va-giam-sat-tu-xa" title="Link to this heading">#</a></h3>
+<p>Cảm biến IoT có thể được sử dụng để theo dõi các thông số quan trọng như nhiệt độ, độ ẩm, áp suất, và dòng chảy chất làm lạnh trong hệ thống tản nhiệt. Dữ liệu này có thể được truy cập từ xa thông qua kết nối internet, cho phép người quản lý kiểm soát hiệu suất của hệ thống mọi lúc, mọi nơi.</p>
+</section>
+<section id="toi-uu-hoa-hieu-suat-hoat-dong">
+<h3>Tối ưu hóa hiệu suất hoạt động<a class="headerlink" href="#toi-uu-hoa-hieu-suat-hoat-dong" title="Link to this heading">#</a></h3>
+<p>Dựa trên dữ liệu từ các cảm biến, hệ thống IoT có thể phân tích và đưa ra các đề xuất để tối ưu hóa hoạt động của hệ thống tản nhiệt. Điều này có thể bao gồm việc điều chỉnh cài đặt hoạt động, tăng hoặc giảm công suất tản nhiệt, hoặc thậm chí là cải thiện hệ thống cách nhiệt.</p>
+</section>
+<section id="du-doan-va-phong-ngua-hong-hoc">
+<h3>Dự đoán và phòng ngừa hỏng hóc<a class="headerlink" href="#du-doan-va-phong-ngua-hong-hoc" title="Link to this heading">#</a></h3>
+<p>Phân tích dữ liệu từ cảm biến có thể giúp trong việc dự đoán các vấn đề tiềm ẩn hoặc hỏng hóc trong hệ thống tản nhiệt. IoT có thể cung cấp cảnh báo sớm để ngăn chặn sự cố và giảm thiểu thời gian ngừng hoạt động không mong muốn.</p>
+</section>
+<section id="tich-hop-voi-he-thong-quan-ly-toan-dien">
+<h3>Tích hợp với hệ thống quản lý toàn diện<a class="headerlink" href="#tich-hop-voi-he-thong-quan-ly-toan-dien" title="Link to this heading">#</a></h3>
+<p>Dữ liệu từ hệ thống tản nhiệt có thể được tích hợp vào các hệ thống quản lý toàn diện (ví dụ: hệ thống quản lý tòa nhà hoặc hệ thống tự động hóa công nghiệp). Điều này giúp tối ưu hóa hiệu suất của toàn bộ hệ thống và giảm thiểu sự lãng phí năng lượng.</p>
+</section>
+<section id="tuong-tac-va-dieu-khien-tu-dong">
+<h3>Tương tác và điều khiển tự động:<a class="headerlink" href="#tuong-tac-va-dieu-khien-tu-dong" title="Link to this heading">#</a></h3>
+<p>Hệ thống tản nhiệt có thể được điều khiển tự động dựa trên các thông số đo được từ cảm biến IoT. Các thiết bị thông minh có thể thay đổi cài đặt hoạt động theo thời gian thực để đáp ứng nhu cầu thay đổi của hệ thống.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book/chapter_intro"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="introduction_member.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">🤝 Thành Viên</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="websocket_intro.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">🚀 WebSocket</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gioi-thieu-tong-quan-he-thong-iot">Giới thiệu tổng quan hệ thống IoT</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gioi-thieu">Giới thiệu</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tai-sao-iot-lai-quan-trong-nhu-vay">Tại sao IoT lại quan trọng như vậy?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uu-va-nhuoc-diem-cua-iot">Ưu và Nhược điểm của IoT</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ung-dung-cua-iot-nang-tam-cuoc-song">Ứng dụng của IoT: Nâng tầm cuộc sống</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ung-dung-cua-iot-trong-he-thong-tan-nhiet">Ứng dụng của IoT trong hệ thống tản nhiệt</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#theo-doi-va-giam-sat-tu-xa">Theo dõi và giám sát từ xa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#toi-uu-hoa-hieu-suat-hoat-dong">Tối ưu hóa hiệu suất hoạt động</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#du-doan-va-phong-ngua-hong-hoc">Dự đoán và phòng ngừa hỏng hóc</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tich-hop-voi-he-thong-quan-ly-toan-dien">Tích hợp với hệ thống quản lý toàn diện</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuong-tac-va-dieu-khien-tu-dong">Tương tác và điều khiển tự động:</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Duong Trung Kien, Nguyen Duy Khanh, Ho Minh Khanh
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

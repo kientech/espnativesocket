@@ -1,0 +1,769 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>👩 Bộ Nhớ Web &#8212; ESPNativeSocket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/chapter_js/17_web_storage';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="🫵 Promises" href="18_promises.html" />
+    <link rel="prev" title="😃 JSON" href="16_json.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ESPNativeSocket</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Xin Chào 👋
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">GIỚI THIỆU</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/introduction_member.html">🤝 Thành Viên</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/iot_intro.html">🧑🏻‍💻 IoT và Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/websocket_intro.html">🚀 WebSocket</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/esp32_intro.html">🔎 ESP32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_intro/nativewind_intro.html">📱 React Native &amp; Tailwind CSS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">PHÂN TÍCH</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/smartcool.html">📌 Hệ Thống Tản Nhiệt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_project.html">💡 Đặc Điểm &amp; Chức Năng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_esp32_websocket.html">🖥️ Tính Năng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_analysis/feature_reactnative_tailwindcss.html">📲 Thiết Kế Giao Diện</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">CÀI ĐẶT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/arduino_esp32.html">🔑 Arduino IDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/nodejs_npm.html">🛰️ NodeJs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/native_cli.html">🖌️ React Native CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_install/tailwindcss.html">📕 Tailwind CSS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">JAVASCRIPT</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_intro_js.html"><strong>🎨 JavaScript Là Gì?</strong></a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="02_datatype.html">🖥️ Kiểu Dữ Liệu</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="02-1_primitive.html">Kiểu Dữ Liệu Nguyên Thuỷ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-2_complex.html">Kiểu Dữ Liệu Phức Tạp</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="03_boolean_operator_date.html">💡 Các Toán Tử</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_condition.html">🤔 Câu Điều Kiện</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_loop.html">🔁 Vòng Lặp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_function.html">🧐 Hàm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_array.html">🚎 Array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_object.html">📒 Object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_set_map.html">🤗 Set và Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_regular_expression.html">🕐 Biểu Thức Chính Quy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_console.html">💻 Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_error_handling.html">🧨 Xử Lý Lỗi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_classes.html">⏳ OOP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_json.html">😃 JSON</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">👩 Bộ Nhớ Web</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_promises.html">🫵 Promises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_dom.html">🎬 DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_event.html">🎨 Sự kiện</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">REACT NATIVE</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_component_react_tailwind/component_react_native.html">😊 Thành Phần</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">ỨNG DỤNG</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/create_app.html">👨‍💻 Cài Đặt và Cấu Hình</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_app/ui_screen.html">📱 Giao Diện Ứng Dụng</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">SERVER</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/create_node.html">🛠️ Tạo Một Dự Án NodeJs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/express_socket.html">1. Nhập thư viện và thiết lập cổng</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../chapter_server/connect_server.html">⏱️ Triển Khai Máy Chủ với Heroku</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">PHẦN CỨNG</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/intro.html">⌨️ Giới Thiệu Phần Cứng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/arduino.html">💎 Arduino Uno R3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/i2c.html">⏱️ Module I2C LCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/relay.html">🛠️ Module Relay 5V</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/protocol.html">🗣️ Phương Thức Giao Tiếp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/test_hardware_esp32.html">🛠️ Kiểm tra ESP32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/test_hardware_lm35.html">✍️ Kiểm tra LM35</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_hardware/conclude.html">✍️ Kết Luận</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">MÔ HÌNH HOÀN THIỆN</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_final/software.html">📱 Phần Mềm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_final/hardware.html">🦾 Phần Cứng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_final/product.html">🎓 Demo Sản Phẩm</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/codingwithkien/espnativesocket" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/codingwithkien/espnativesocket/issues/new?title=Issue%20on%20page%20%2Fbook/chapter_js/17_web_storage.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/book/chapter_js/17_web_storage.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>👩 Bộ Nhớ Web</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bo-nho-web-html5">Bộ Nhớ Web HTML5</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sessionstorage">sessionStorage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#localstorage">localStorage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#truong-hop-su-dung-bo-nho-web">Trường Hợp Sử Dụng Bộ Nhớ Web</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#doi-tuong-bo-nho-web-html5">Đối Tượng Bộ Nhớ Web HTML5</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#luu-tru-muc-vao-localstorage">Lưu trữ mục vào localStorage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-muc-tu-localstorage">Lấy mục từ localStorage</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="bo-nho-web">
+<h1>👩 Bộ Nhớ Web<a class="headerlink" href="#bo-nho-web" title="Link to this heading">#</a></h1>
+<section id="bo-nho-web-html5">
+<h2>Bộ Nhớ Web HTML5<a class="headerlink" href="#bo-nho-web-html5" title="Link to this heading">#</a></h2>
+<p>Bộ nhớ Web (sessionStorage và localStorage) là một API HTML5 mới cung cấp những lợi ích quan trọng so với cookie truyền thống. Trước HTML5, dữ liệu ứng dụng phải được lưu trữ trong cookie, được bao gồm trong mỗi yêu cầu đến máy chủ. Bộ nhớ Web an toàn hơn và cho phép lưu trữ một lượng lớn dữ liệu cục bộ mà không ảnh hưởng đến hiệu suất của trang web. Giới hạn lưu trữ dữ liệu của cookie trong nhiều trình duyệt web là khoảng 4 KB mỗi cookie. Bộ nhớ Web có thể lưu trữ dữ liệu lớn hơn nhiều (ít nhất là 5MB) và không bao giờ được chuyển đến máy chủ. Tất cả các trang từ cùng một nguồn có thể lưu trữ và truy cập cùng một dữ liệu.</p>
+<p>Dữ liệu được lưu trữ có thể được truy cập bằng JavaScript, giúp bạn tận dụng khả năng lập trình phía client để thực hiện nhiều điều truyền thống liên quan đến lập trình phía máy chủ và cơ sở dữ liệu quan hệ. Có hai đối tượng Bộ Nhớ Web:</p>
+<ul class="simple">
+<li><p>sessionStorage</p></li>
+<li><p>localStorage</p></li>
+</ul>
+<p>localStorage tương tự như sessionStorage, ngoại trừ việc dữ liệu được lưu trữ trong localStorage không có thời gian hết hạn, dữ liệu được lưu trữ trong sessionStorage sẽ bị xóa khi phiên trang kết thúc — tức là khi trang được đóng.</p>
+<p>Cần lưu ý rằng dữ liệu được lưu trữ trong cả localStorage hoặc sessionStorage đều đặc thù cho giao thức của trang.</p>
+<p>Các khóa và giá trị luôn là chuỗi (lưu ý rằng, như với đối tượng, các khóa số nguyên sẽ tự động được chuyển đổi thành chuỗi).</p>
+<p><img alt="web_storage" src="book/images/web_storage.png" /></p>
+<section id="sessionstorage">
+<h3>sessionStorage<a class="headerlink" href="#sessionstorage" title="Link to this heading">#</a></h3>
+<p>sessionStorage chỉ khả dụng trong tab trình duyệt hoặc phiên cửa sổ. Nó được thiết kế để lưu trữ dữ liệu trong một phiên trang web duy nhất. Điều này có nghĩa là nếu cửa sổ bị đóng, dữ liệu phiên sẽ bị xóa. Vì sessionStorage và localStorage có các phương thức tương tự, chúng ta sẽ tập trung vào localStorage.</p>
+</section>
+<section id="localstorage">
+<h3>localStorage<a class="headerlink" href="#localstorage" title="Link to this heading">#</a></h3>
+<p>HTML5 localStorage là một phần của API bộ nhớ web được sử dụng để lưu trữ dữ liệu trên trình duyệt mà không có ngày hết hạn. Dữ liệu sẽ có sẵn trên trình duyệt ngay cả khi trình duyệt bị đóng. localStorage được giữ ngay cả giữa các phiên trình duyệt. Điều này có nghĩa là dữ liệu vẫn có sẵn khi trình duyệt bị đóng và mở lại, và cũng ngay lập tức giữa các tab và cửa sổ.</p>
+<p>Dữ liệu Bộ Nhớ Web, trong cả hai trường hợp, không khả dụng giữa các trình duyệt khác nhau. Ví dụ, các đối tượng lưu trữ được tạo trong Firefox không thể truy cập trong Internet Explorer, giống như cookie. Có năm phương thức để làm việc trên bộ nhớ cục bộ: <em>setItem(), getItem(), removeItem(), clear(), key()</em></p>
+</section>
+<section id="truong-hop-su-dung-bo-nho-web">
+<h3>Trường Hợp Sử Dụng Bộ Nhớ Web<a class="headerlink" href="#truong-hop-su-dung-bo-nho-web" title="Link to this heading">#</a></h3>
+<p>Một số trường hợp sử dụng Bộ Nhớ Web là</p>
+<ul class="simple">
+<li><p>lưu trữ dữ liệu tạm thời</p></li>
+<li><p>lưu các sản phẩm mà người dùng đặt trong giỏ hàng của họ</p></li>
+<li><p>dữ liệu có thể được làm sẵn giữa các yêu cầu trang, nhiều tab trình duyệt và cũng giữa các phiên trình duyệt sử dụng localStorage</p></li>
+<li><p>có thể được sử dụng hoàn toàn offline sử dụng localStorage</p></li>
+<li><p>Bộ Nhớ Web có thể là một chiến thắng hiệu suất lớn khi một số dữ liệu tĩnh được lưu trữ trên client để giảm số lượng yêu cầu tiếp theo. Ngay cả hình ảnh cũng có thể được lưu trữ dưới dạng chuỗi sử dụng mã hóa Base64.</p></li>
+<li><p>có thể được sử dụng cho phương thức xác thực người dùng</p></li>
+</ul>
+<p>Đối với các ví dụ được đề cập ở trên, có ý nghĩa sử dụng localStorage. Bạn có thể thắc mắc, vậy khi nào nên sử dụng sessionStorage.</p>
+<p>Trong những trường hợp chúng ta muốn xóa dữ liệu ngay khi cửa sổ bị đóng. Hoặc, có thể, nếu chúng ta không muốn ứng dụng can thiệp vào cùng ứng dụng được mở trong một cửa sổ khác. Những tình huống này được phục vụ tốt nhất với sessionStorage.</p>
+<p>Bây giờ, chúng ta hãy xem cách sử dụng các API Bộ Nhớ Web này.</p>
+</section>
+</section>
+<section id="doi-tuong-bo-nho-web-html5">
+<h2>Đối Tượng Bộ Nhớ Web HTML5<a class="headerlink" href="#doi-tuong-bo-nho-web-html5" title="Link to this heading">#</a></h2>
+<p>Bộ nhớ web HTML cung cấp hai đối tượng để lưu trữ dữ liệu trên client:</p>
+<ul class="simple">
+<li><p>window.localStorage - lưu trữ dữ liệu không có ngày hết hạn</p></li>
+<li><p>window.sessionStorage - lưu trữ dữ liệu cho một phiên (dữ liệu sẽ mất khi tab trình duyệt bị đóng)</p></li>
+</ul>
+<p>Hầu hết các trình duyệt hiện đại đều hỗ trợ Bộ Nhớ Web, tuy nhiên, nên kiểm tra hỗ trợ trình duyệt cho localStorage và sessionStorage. Hãy cùng xem các phương thức có sẵn cho các đối tượng Bộ Nhớ Web.</p>
+<p>Các đối tượng Bộ Nhớ Web:</p>
+<ul class="simple">
+<li><p><em>localStorage</em> - để hiển thị đối tượng localStorage</p></li>
+<li><p><em>localStorage.clear()</em> - để xóa mọi thứ trong bộ nhớ cục bộ</p></li>
+<li><p><em>localStorage.setItem()</em> - để lưu trữ dữ liệu trong localStorage. Nó nhận các tham số là khóa và giá trị.</p></li>
+<li><p><em>localStorage.getItem()</em> - để hiển thị dữ liệu được lưu trữ trong localStorage. Nó nhận một khóa làm tham số.</p></li>
+<li><p><em>localStorage.removeItem()</em> - để xóa mục đã lưu trữ khỏi localStorage. Nó nhận khóa làm tham số.</p></li>
+<li><p><em>localStorage.key()</em> - để hiển thị một dữ liệu được lưu trữ trong localStorage. Nó nhận chỉ mục làm tham số.</p></li>
+</ul>
+<p><img alt="local_storage" src="book/images/local_storage.png" /></p>
+<section id="luu-tru-muc-vao-localstorage">
+<h3>Lưu trữ mục vào localStorage<a class="headerlink" href="#luu-tru-muc-vao-localstorage" title="Link to this heading">#</a></h3>
+<p>Khi chúng ta lưu trữ dữ liệu vào localStorage, nó sẽ được lưu trữ dưới dạng chuỗi. Nếu chúng ta lưu trữ một mảng hoặc một đối tượng, chúng ta nên chuyển nó thành chuỗi trước để giữ nguyên định dạng nếu không chúng ta sẽ mất cấu trúc mảng hoặc đối tượng của dữ liệu gốc.</p>
+<p>Chúng ta lưu trữ dữ liệu trong localStorage bằng phương thức <em>localStorage.setItem</em>.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">//cú pháp</span>
+<span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Lưu trữ chuỗi trong localStorage</p></li>
+</ul>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s1">&#39;firstName&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Asabeneh&#39;</span><span class="p">)</span><span class="w"> </span><span class="c1">// vì giá trị là chuỗi nên chúng ta không cần chuyển nó thành chuỗi</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">localStorage</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Storage<span class="w"> </span><span class="o">{</span>firstName:<span class="w"> </span><span class="s1">&#39;Asabeneh&#39;</span>,<span class="w"> </span>length:<span class="w"> </span><span class="m">1</span><span class="o">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Lưu trữ số trong localStorage</p></li>
+</ul>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">200</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">localStorage</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>Storage<span class="w"> </span><span class="o">{</span>age:<span class="w"> </span><span class="s1">&#39;200&#39;</span>,<span class="w"> </span>firstName:<span class="w"> </span><span class="s1">&#39;Asabeneh&#39;</span>,<span class="w"> </span>length:<span class="w"> </span><span class="m">2</span><span class="o">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Lưu trữ một mảng trong localStorage. Nếu chúng ta lưu trữ một mảng, một đối tượng hoặc mảng đối tượng, chúng ta nên chuyển đổi đối tượng thành chuỗi trước. Xem ví dụ dưới đây.</p></li>
+</ul>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">skills</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;HTML&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;JS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;React&#39;</span><span class="p">]</span>
+<span class="c1">//Mảng kỹ năng phải được chuyển đổi thành chuỗi trước để giữ nguyên định dạng.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">skillsJSON</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">skills</span><span class="p">,</span><span class="w"> </span><span class="kc">undefined</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">)</span>
+<span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s1">&#39;skills&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">skillsJSON</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">localStorage</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Storage<span class="w"> </span><span class="o">{</span>age:<span class="w"> </span><span class="s1">&#39;200&#39;</span>,<span class="w"> </span>firstName:<span class="w"> </span><span class="s1">&#39;Asabeneh&#39;</span>,<span class="w"> </span>skills:<span class="w"> </span><span class="s1">&#39;HTML,CSS,JS,React&#39;</span>,<span class="w"> </span>length:<span class="w"> </span><span class="m">3</span><span class="o">}</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">skills</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">tech</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;HTML&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">tech</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">9</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">tech</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;JS&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">8</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">tech</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;React&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">9</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">tech</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Redux&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">tech</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Node&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">8</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">tech</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;MongoDB&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">8</span><span class="w"> </span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">skillJSON</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">skills</span><span class="p">)</span>
+<span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s1">&#39;skills&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">skillJSON</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Lưu trữ một đối tượng trong localStorage. Trước khi lưu trữ đối tượng vào localStorage, đối tượng phải được chuyển đổi thành chuỗi.</p></li>
+</ul>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">firstName</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Asabeneh&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">250</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">skills</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;HTML&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CSS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;JS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;React&#39;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">userText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span><span class="w"> </span><span class="kc">undefined</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">)</span>
+<span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">userText</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="lay-muc-tu-localstorage">
+<h3>Lấy mục từ localStorage<a class="headerlink" href="#lay-muc-tu-localstorage" title="Link to this heading">#</a></h3>
+<p>Chúng ta lấy dữ liệu từ bộ nhớ cục bộ bằng phương thức <em>localStorage.getItem()</em>.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">//cú pháp</span>
+<span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">firstName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;firstName&#39;</span><span class="p">)</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">)</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">skills</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;skills&#39;</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span><span class="w"> </span><span class="nx">age</span><span class="p">,</span><span class="w"> </span><span class="nx">skills</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="s1">&#39;Asabeneh&#39;</span>,<span class="w"> </span><span class="s1">&#39;200&#39;</span>,<span class="w"> </span><span class="s1">&#39;[&#39;</span>HTML<span class="s1">&#39;,&#39;</span>CSS<span class="s1">&#39;,&#39;</span>JS<span class="s1">&#39;,&#39;</span>React<span class="s1">&#39;]&#39;</span>
+</pre></div>
+</div>
+<p>Như bạn có thể thấy, kỹ năng đang ở định dạng chuỗi. Hãy sử dụng JSON.parse() để phân tích nó thành mảng bình thường.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">skills</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;skills&#39;</span><span class="p">)</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">skillsObj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">skills</span><span class="p">,</span><span class="w"> </span><span class="kc">undefined</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">skillsObj</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="s1">&#39;HTML&#39;</span>,<span class="s1">&#39;CSS&#39;</span>,<span class="s1">&#39;JS&#39;</span>,<span class="s1">&#39;React&#39;</span><span class="o">]</span>
+<span class="sb">``</span>
+
+<span class="sb">`</span>
+
+<span class="c1">### Xóa bộ nhớ cục bộ</span>
+
+Phương<span class="w"> </span>thức<span class="w"> </span>clear<span class="w"> </span>sẽ<span class="w"> </span>xóa<span class="w"> </span>mọi<span class="w"> </span>thứ<span class="w"> </span>được<span class="w"> </span>lưu<span class="w"> </span>trữ<span class="w"> </span>trong<span class="w"> </span>bộ<span class="w"> </span>nhớ<span class="w"> </span>cục<span class="w"> </span>bộ
+
+<span class="sb">```</span>js
+localStorage.clear<span class="o">()</span>
+</pre></div>
+</div>
+<p>Bây giờ, bạn đã biết về Bộ Nhớ Web và bạn biết cách lưu trữ dữ liệu nhỏ trên trình duyệt của khách hàng. Bạn đã tiến thêm 17 bước trên con đường đến sự vĩ đại. Bây giờ hãy làm một số bài tập cho trí óc và cơ bắp của bạn.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book/chapter_js"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="16_json.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">😃 JSON</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="18_promises.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">🫵 Promises</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bo-nho-web-html5">Bộ Nhớ Web HTML5</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sessionstorage">sessionStorage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#localstorage">localStorage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#truong-hop-su-dung-bo-nho-web">Trường Hợp Sử Dụng Bộ Nhớ Web</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#doi-tuong-bo-nho-web-html5">Đối Tượng Bộ Nhớ Web HTML5</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#luu-tru-muc-vao-localstorage">Lưu trữ mục vào localStorage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lay-muc-tu-localstorage">Lấy mục từ localStorage</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Duong Trung Kien, Nguyen Duy Khanh, Ho Minh Khanh
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

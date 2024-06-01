@@ -1,0 +1,1 @@
+# 4. Xử Lý Dữ Liệu Từ ESP32 và Gửi Đến React Native
