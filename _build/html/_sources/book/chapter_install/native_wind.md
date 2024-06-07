@@ -1,1 +1,1 @@
-# Cài đặt React Native cho Windown
+# Cài đặt React Native cho Windo
