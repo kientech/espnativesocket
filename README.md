@@ -88,9 +88,4 @@ Cập nhật địa chỉ IP ESP32 trong file cấu hình App.
 
 * Thiết bị và điện thoại phải chung mạng LAN.
 * IP của ESP32 có thể thay đổi theo mạng – nên dùng mDNS hoặc gán IP tĩnh.
-
-## 📄 Giấy phép
-
-Dự án này được phát hành dưới giấy phép MIT.
-
 ---
